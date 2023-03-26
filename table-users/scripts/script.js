@@ -19,11 +19,17 @@ function UserTable({ form, content, userInfo, addButton }) {
     this.deleteUser = () => {
         document.addEventListener('click', (event) => {
             if (event.target.classList.contains('js--btn-delete')) {
+
                 const userID = Number(event.target.closest('tr').dataset.id);
                 const userData = JSON.parse(localStorage.getItem('users'));
+
                 userData.splice(0, userData.length, ...userData.filter(item => userID !== item.id));
+
                 localStorage.setItem('users',JSON.stringify(userData));
+
                 event.target.closest("tr").remove();
+
+                if (userData.length === 0) return localStorage.removeItem('users');
             }
         });
     }
