@@ -15,21 +15,17 @@ function UserTable({ form, content, userInfo, addButton }) {
         this.deleteUser()
         this.loadUsers();
     }
-
     //Данный метод удаляет данные конкретного пользоаптеля
     this.deleteUser = () => {
         document.addEventListener('click', (event) => {
             if (event.target.classList.contains('js--btn-delete')) {
-                const userID = Number(event.target.closest('td').previousSibling.previousSibling.previousSibling.previousSibling.textContent);
+                const userID = Number(event.target.closest('tr').dataset.id);
                 const userData = JSON.parse(localStorage.getItem('users'));
-                userData.forEach(item => {
-                    if (userID === item.id) {
-                        event.target.closest("tr").remove();
-                    }
-                    // console.log(item.id)
-                });
+                userData.splice(0, userData.length, ...userData.filter(item => userID !== item.id));
+                localStorage.setItem('users',JSON.stringify(userData));
+                event.target.closest("tr").remove();
             }
-        })
+        });
     }
     //Данный метод создает данные нового пользователя
     this.addUser = (name, phone, age) => {
@@ -57,8 +53,8 @@ function UserTable({ form, content, userInfo, addButton }) {
     //Создаем шаблон пользователя
     this.userTemplate = (user) => {
         content.insertAdjacentHTML('beforeend',(
-            `<tr>`+
-                `<td>${user.id}</td>`+
+            `<tr data-id="${user.id}">`+
+                `<td class="userId">${user.id}</td>`+
                 `<td>${user.name}</td>`+
                 `<td>${user.phone}</td>`+
                 `<td>${user.age}</td>`+
