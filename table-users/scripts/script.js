@@ -60,7 +60,7 @@ function UserTable({ form, content, userInfo, addButton }) {
     this.userTemplate = (user) => {
         content.insertAdjacentHTML('beforeend',(
             `<tr data-id="${user.id}">`+
-                `<td class="userId">${user.id}</td>`+
+                `<td>${user.id}</td>`+
                 `<td>${user.name}</td>`+
                 `<td>${user.phone}</td>`+
                 `<td>${user.age}</td>`+
