@@ -17,14 +17,20 @@ body {
     margin: 0;
     padding: 0;
 }
+p {
+    margin-bottom: 15px;
+}
+p:last-child {
+    margin-bottom: 0;
+}
 .wrapper {
     max-width: 650px;
     width: 100%;
     margin: 0 auto;
 }
-.block__content {
+.block__content-posts {
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     box-sizing: border-box;
     padding: 25px 0;
     border-radius: 15px;
@@ -34,15 +40,7 @@ body {
     color: gainsboro;
 
 }
-p {
-    margin-bottom: 15px;
-}
-p:last-child {
-    margin-bottom: 0;
-}
-
-
-.block__info {
+.block__form-post {
     margin: 0 auto 40px;
     width: 100%;
     display: flex;
@@ -71,7 +69,8 @@ input::placeholder {
     color: red;
     display: none;
 }
-.js--button {
+.js--button-post,
+.js--button-comments {
     max-width: 200px;
     width: 100%;
     display: flex;
@@ -82,4 +81,25 @@ input::placeholder {
     border: 3px solid darkslateblue;
     background-color: azure;
     font-size: 13px;
+}
+
+.block__comments {
+    box-sizing: border-box;
+    padding: 30px 0;
+    width: 100%;
+    margin: 0 auto;
+    background-color: azure;
+    border: 2px solid #05f1f1;
+    color: #857e7e;
+    border-radius: 15px;
+    text-align: center;
+}
+.block__content-comments {
+    max-width: 630px;
+    width: 100%;
+}
+.js--button-comments {
+    border-color: slateblue;
+    background-color: #03a9f4;
+    margin: 0 auto 30px;
 }

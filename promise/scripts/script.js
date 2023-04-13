@@ -1,37 +1,78 @@
-function GetInfoAboutUser({ button, inputValue, url }) {
-    button.addEventListener('click', () => {
-        this.checkInput();
+function GetInfoAboutUser({ buttonPosts, buttonComments, input, elementError }) {
+    buttonPosts.addEventListener('click', () => {
+        this.validateInput();
     })
-    this.checkInput = function () {
+    this.validateInput = function () {
         const regExp = /^([1-9]|[1-9][0-9]|100)$/;
-        regExp.test(inputValue) ? this.requestPost() : this.showError()
+        regExp.test(input.value) ? this.requestPost() : this.showError();
     }
     this.showError = function () {
-        document.querySelector('.js--small').style.display = 'block'
+        elementError.style.display = 'block';
+        this.clearContentPost();
     }
     this.requestPost = function ()  {
-        const promise = fetch(url);
-        promise
-            .then(data => {
-                console.log(data);
-                return  data.json();
+        const promisePost = fetch('https://jsonplaceholder.typicode.com/posts');
+        promisePost
+            .then(dataPost => {
+                console.log('DatePost: ', dataPost);
+                return  dataPost.json();
             })
-            .then(updateData => {
-                console.log('Result: ', updateData);
-                const userInfo = updateData.filter(item => item.id === inputValue);
-                document.querySelector('.js--userId').innerHTML = `UserId:  ${userInfo[0].userId}`
-                document.querySelector('.js--id').innerHTML = `id:  ${userInfo[0].id}`
-                document.querySelector('.js--title').innerHTML = `Title: ${userInfo[0].title}`;
-                document.querySelector('.js--body').innerHTML = `Body: ${userInfo[0].body}`
-                console.log(userInfo)
+            .then(updateDataPost => {
+                console.log('Result: ', updateDataPost);
+                const userPost = updateDataPost.filter(item => item.id === Number(input.value));
+                console.log('userInfo: ', userPost);
+                document.querySelector('.js--userId').innerHTML = `UserId:  ${userPost[0].userId}`
+                document.querySelector('.js--id').innerHTML = `Id:  ${userPost[0].id}`
+                document.querySelector('.js--title').innerHTML = `Title: ${userPost[0].title}`;
+                document.querySelector('.js--body').innerHTML = `Body: ${userPost[0].body}`
+                console.log(userPost)
             })
-            .catch(err => console.log('Проверьте данные, ',err));
+            .catch(err => console.error('Проверьте данные, ' ,err));
+
+
+        elementError.style.display = 'none';
+        buttonComments.addEventListener('click', () => {
+            this.requestComment();
+        })
+    }
+
+
+
+    this.requestComment = () => {
+        const promiseComment = fetch('https://jsonplaceholder.typicode.com/comments');
+        promiseComment
+            .then(dataComment => {
+                console.log('DateComment: ', dataComment)
+                return dataComment.json()
+            })
+            .then(updateDataComment => {
+                console.log('ResultComment: ', updateDataComment);
+                const userComment = updateDataComment.filter(item => item.id === Number(input.value));
+                document.querySelector('.js--commentId').innerHTML = `CommentId: ${userComment[0].postId}`;
+                document.querySelector('.js--id-comment').innerHTML = `Id: ${userComment[0].id}`;
+                document.querySelector('.js--name').innerHTML = `Name: ${userComment[0].name}`;
+                document.querySelector('.js--email').innerHTML = `Email: ${userComment[0].email}`;
+                document.querySelector('.js--body-comment').innerHTML = `Body: ${userComment[0].body}`
+            })
+            .catch(err => console.error('Проверьте данные, ' ,err));
+    }
+
+
+    this.clearContentPost = () => {
+        document.querySelector('.js--userId').innerHTML = '';
+        document.querySelector('.js--id').innerHTML = '';
+        document.querySelector('.js--title').innerHTML = '';
+        document.querySelector('.js--body').innerHTML = '';
+        document.querySelector('.js--commentId').innerHTML = '';
+        document.querySelector('.js--id-comment').innerHTML = '';
+        document.querySelector('.js--name').innerHTML = '';
+        document.querySelector('.js--email').innerHTML = '';
+        document.querySelector('.js--body-comment').innerHTML = '';
     }
 }
-
-
 new GetInfoAboutUser({
-    button: document.querySelector('.js--button'),
-    inputValue: document.querySelector('.js--input').value,
-    url: 'https://jsonplaceholder.typicode.com/posts'
+    buttonPosts: document.querySelector('.js--button-post'),
+    buttonComments: document.querySelector('.js--button-comments'),
+    input: document.querySelector('.js--input'),
+    elementError: document.querySelector('.js--small'),
 })
