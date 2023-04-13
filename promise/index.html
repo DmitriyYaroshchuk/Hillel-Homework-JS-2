@@ -1,10 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-$END$
+    <div class="wrapper">
+        <div class="block__info">
+            <label>
+                <input class="js--input" type="text" placeholder="Введите число от 1 до 100">
+                <small class="js--small">Проверьте корректность ввода данных</small>
+            </label>
+            <button class="js--button">Сделать заппрос</button>
+        </div>
+        <div class="block__content">
+            <p class="js--userId"></p>
+            <p class="js--id"></p>
+            <p class="js--title"></p>
+            <p class="js--body"></p>
+        </div>
+    </div>
+
+<script src="scripts/script.js"></script>
 </body>
 </html>
