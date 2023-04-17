@@ -7,3 +7,5 @@ regEx/.idea
 student/.idea
 weather/.idea
 promise/.idea
+gulp/.idea
+gulp/node_modules
