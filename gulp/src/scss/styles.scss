@@ -1,11 +1,24 @@
+//_______Colors________//
+$red: red;
+$bright-turquoise: #05f1f1;
+$cornflowerblue: cornflowerblue;
+$gainsboro: gainsboro;
+$pigeon-blue: #607D8B;
+$powderblue: powderblue;
+$darkblue: darkblue;
+$darkslateblue: darkslateblue;
+$azure: azure;
+$gray: #857e7e;
+$slateblue: slateblue;
+$blue-frosty-sky: #03a9f4;
+//__________________________________//
 //Коментарий//
 *               {
     margin: 0;
      padding: 0;
         font-weight: 700;
             font-size: 20px;
-     line-height: 120%;
-    }
+     line-height: 120%;}
 //Коментарий//
 //Коментарий//
 //Коментарий//
@@ -42,10 +55,10 @@ p:last-child {
     box-sizing: border-box;
     padding: 25px 0;
     border-radius: 15px;
-    border: 2px solid #05f1f1;
+    border: 2px solid $bright-turquoise;
     text-align: center;
-    background-color: cornflowerblue;
-    color: gainsboro;
+    background-color: $cornflowerblue;
+    color: $gainsboro;
 
 }
 .block__form-post {
@@ -65,16 +78,16 @@ input {
     padding: 15px 0 15px 15px;
     border-radius: 15px;
     width: 100%;
-    border: 2px solid #607D8B;
+    border: 2px solid $pigeon-blue;
     box-sizing: border-box;
-    background-color: powderblue;
-    color: darkblue;
+    background-color: $powderblue;
+    color: $darkblue;
 }
 input::placeholder {
     font-size: 12px;
 }
 .js--small {
-    color: red;
+    color: $red;
     display: none;
 }
 .js--button-post,
@@ -86,8 +99,8 @@ input::placeholder {
     align-items: center;
     min-height: 50px;
     border-radius: 20px;
-    border: 3px solid darkslateblue;
-    background-color: azure;
+    border: 3px solid $darkslateblue;
+    background-color: $azure;
     font-size: 13px;
 }
 
@@ -96,9 +109,9 @@ input::placeholder {
     padding: 30px 0;
     width: 100%;
     margin: 0 auto;
-    background-color: azure;
-    border: 2px solid #05f1f1;
-    color: #857e7e;
+    background-color: $azure;
+    border: 2px solid $bright-turquoise;
+    color: $gray;
     border-radius: 15px;
     text-align: center;
 }
@@ -107,7 +120,7 @@ input::placeholder {
     width: 100%;
 }
 .js--button-comments {
-    border-color: slateblue;
-    background-color: #03a9f4;
+    border-color: $slateblue;
+    background-color: $blue-frosty-sky;
     margin: 0 auto 30px;
 }

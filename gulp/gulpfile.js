@@ -1,6 +1,5 @@
 "use strict"
-const { task, src, dest } = require("gulp");
-const gulp = require("gulp");
+const { task, src, dest, watch, series } = require("gulp");
 const autoprefixer = require('gulp-autoprefixer');
 const cssbeautify = require('gulp-cssbeautify');
 const stripCssComments = require('gulp-strip-css-comments');//Удаляет как однострочные, так и многострочные комментарии из JSON, JavaScript и CSS/текста.
@@ -11,9 +10,9 @@ const rigger = require('gulp-rigger');//Собирает все js-файлы в
 const uglify = require('gulp-uglify');//Минифицирует JS
 const plumber = require('gulp-plumber'); //Предотвращает ошибки, не дает таску сломаться
 const imagemin = require('gulp-imagemin');
-const panini = require('panini');
-const del = require("del");
-const browserSync = require("browser-sync").create();
+const del = require("del");// Удаляет папку dist, если что-то удалили в папке src
+const browserSync = require("browser-sync").create();// Позволяет наблюдать за изменениями в реальном времени без перезагрузки страницы
+const notify = require("gulp-notify");// Указывает на ошибки, работает в связке с plumber
 
 //_____Paths______//
 const srcPath = "src/";
@@ -43,16 +42,32 @@ const path = {
     },
     clean: "./" + distPath
 }
+task('update', () => {
+    browserSync.init({
+        server: {
+            baseDir: "./" + distPath
+        }
+    })
+})
 task('html', () => {
     return src(path.src.html, {base: srcPath})
         .pipe(plumber())
         .pipe(dest(path.build.html))
+        .pipe(browserSync.reload({stream: true}))
 })
 task('css', () => {
     return src(path.src.css, {base: srcPath + "scss/"})
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: function (err) {
+                notify.onError({
+                    title: "SCSS Error",
+                    message: "Error: <%= error.message %>"
+                })(err);
+                this.emit('end')
+            }
+        }))
         .pipe(sass())
-        .pipe(autoprefixer())
+        .pipe(autoprefixer('last 2 versions'))
         .pipe(cssbeautify())
         .pipe(dest(path.build.css))
         .pipe(cssnano({
@@ -67,10 +82,20 @@ task('css', () => {
             extname: ".css",
         }))
         .pipe(dest(path.build.css))
+        .pipe(browserSync.reload({stream: true}))
+
 })
 task('js', () => {
     return src(path.src.js, {base: srcPath + "js/"})
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: function (err) {
+                notify.onError({
+                    title: "JS Error",
+                    message: "Error: <%= error.message %>"
+                })(err);
+                this.emit('end')
+            }
+        }))
         .pipe(rigger())
         .pipe(dest(path.build.js))
         .pipe(uglify())
@@ -79,6 +104,7 @@ task('js', () => {
             extname: ".js",
         }))
         .pipe(dest(path.build.js))
+        .pipe(browserSync.reload({stream: true}))
 })
 task('images', () => {
     return src(path.src.images, {base: srcPath + 'images/'})
@@ -94,15 +120,23 @@ task('images', () => {
             })
         ]))
         .pipe(dest(path.build.images ))
+        .pipe(browserSync.reload({stream: true}))
 })
 task('fonts', () => {
     return src(path.src.fonts, {base: srcPath + "fonts/"})
         .pipe(dest(path.build.fonts))
 })
-task('build', () => {
-    return gulp.series('clean', gulp.parallel('html', 'css', 'js', 'images', 'fonts'))
-        .pipe(dest(path.build.html))
-})
+
 task('clean', () => {
     return del(path.clean)
 })
+task('build', series('html', 'css', 'js', 'images', 'fonts'))
+
+task('watchFiles', () => {
+    watch(path.watch.html, series('html'))
+    watch(path.watch.css, series('css'))
+    watch(path.watch.js, series('js'))
+    watch(path.watch.images, series('images'))
+    watch(path.watch.fonts, series('fonts'))
+})
+task('watch', series('build', 'watchFiles', 'update'))

@@ -9,3 +9,4 @@ weather/.idea
 promise/.idea
 gulp/.idea
 gulp/node_modules
+gulp/dist
