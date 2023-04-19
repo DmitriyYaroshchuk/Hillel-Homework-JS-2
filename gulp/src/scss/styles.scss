@@ -12,6 +12,12 @@ $gray: #857e7e;
 $slateblue: slateblue;
 $blue-frosty-sky: #03a9f4;
 //__________________________________//
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/montserrat-v18-latin-700.woff');
+}
 //Коментарий//
 *               {
     margin: 0;
