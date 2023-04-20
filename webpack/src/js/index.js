@@ -1,3 +1,11 @@
+import '../index.html';
+import '../styles/index.scss';
+import { multi, sum, divide } from "./module";
+
+
+console.log(multi(3,4));
+console.log(divide(15,5))
+console.log(sum(24,56))
 
 function GetInfoAboutUser({ buttonPosts, buttonComments, input, elementError }) {
     buttonPosts.addEventListener('click', () => {
