@@ -10,3 +10,6 @@ promise/.idea
 gulp/.idea
 gulp/node_modules
 gulp/dist
+webpack/.idea
+webpack/node_modules
+webpack/dist
