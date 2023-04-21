@@ -1,6 +1,7 @@
 import '../index.html';
 import '../styles/index.scss';
 import { multi, sum, divide } from "./module";
+import { slider } from "./slider";
 
 
 console.log(multi(3,4));
@@ -84,4 +85,9 @@ new GetInfoAboutUser({
     buttonComments: document.querySelector('.js--button-comments'),
     input: document.querySelector('.js--input'),
     elementError: document.querySelector('.js--small'),
-})
+});
+slider(
+    document.querySelector('.js--slider__prev'),
+    document.querySelector('.js--slider__next'),
+    document.querySelector('.js--list'),
+);

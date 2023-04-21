@@ -15,7 +15,7 @@
 }
 //__________________________________//
 @font-face {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat Bold';
   font-style: normal;
   font-weight: 700;
   src: url('../fonts/montserrat-v18-latin-700.woff');
@@ -24,33 +24,30 @@
 *               {
   margin: 0;
   padding: 0;
-  @include text-font($fontMontserratBold, normal, 700, 20px , 120%);
  }
 
-
 //Коментарий//
 //Коментарий//
 //Коментарий//
 
 //Коментарий//
-
-
 
 html                 {
   height: 100%;
 }
 
-
 //Коментарий//
 //Коментарий//
 body {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
+  background-image: url("../images/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 1920px auto;
 }
 p {
   margin-bottom: 15px;
@@ -59,11 +56,16 @@ p:last-child {
   margin-bottom: 0;
 }
 .wrapper {
+  box-sizing: border-box;
+  padding: 75px 0;
   max-width: 650px;
   width: 100%;
   margin: 0 auto;
+
 }
+
 .block__content-posts {
+  max-width: 700px;
   width: 100%;
   margin: 0 auto 40px;
   box-sizing: border-box;
@@ -73,14 +75,16 @@ p:last-child {
   text-align: center;
   background-color: $cornflowerblue;
   color: $gainsboro;
-
+  @include text-font($fontMontserratBold, normal, 700, 20px , 120%);
 }
 .block__form-post {
   margin: 0 auto 40px;
+  max-width: 700px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  @include text-font($fontMontserratBold, normal, 700, 20px , 120%);
 }
 label {
   display: inline-block;
@@ -97,6 +101,7 @@ input {
   background-color: $powderblue;
   color: $darkblue;
 }
+input,
 input::placeholder {
   font-size: 12px;
 }
@@ -116,13 +121,16 @@ input::placeholder {
   border: 3px solid $darkslateblue;
   background-color: $azure;
   font-size: 13px;
+  @include text-font($fontMontserratBold, normal, 700, 20px , 120%);
 }
 
 .block__comments {
+  @include text-font($fontMontserratBold, normal, 700, 20px , 120%);
   box-sizing: border-box;
   padding: 30px 0;
+  max-width: 700px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   background-color: $azure;
   border: 2px solid $bright-turquoise;
   color: $gray;
@@ -132,6 +140,8 @@ input::placeholder {
 .block__content-comments {
   max-width: 630px;
   width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 .js--button-comments {
   border-color: $slateblue;
@@ -139,17 +149,96 @@ input::placeholder {
   margin: 0 auto 30px;
 }
 .block-photo {
-  padding: 75px 0;
+  padding: 75px 0 0 0;
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  background-color: $azure;
+  background-color: transparent;
   text-align: center;
 }
 .block-photo__title {
-  color: $slateblue;;
+  color: $slateblue;
+  @include text-font($fontMontserratBold, normal, 700, 25px , 120%);
+  margin-bottom: 35px;
+  font-size: 25px;
 }
 img {
   max-width: 100%;
   min-height: auto;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.wrapper:before {
+  content: url("../images/logo-test.svg");
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider__prev,
+.slider__next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $purple;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.slider__prev {
+  display: none;
+}
+.slider ul {
+  display: flex;
+  max-width: 960px;
+  overflow: hidden;
+  padding: 0;
+}
+.slider li {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  list-style: none;
+  //min-width: 500px;
+  //min-height: 500px;
+  margin: 10px;
+  background-color: transparent;
+  opacity: 0;
+  color: $white;
+  animation: fadeInFromNone 0.5s ease-out;
+}
+.photo {
+  max-width: 100%;
+  min-height: auto;
+}
+@keyframes fadeInFromNone {
+  from {
+    opacity: 0;
+    display: block;
+  }
+
+  to {
+    display: block;
+    opacity: 1;
+  }
+}
+.slider li.active {
+  opacity: 1;
+  display: flex;
+}
+.arrow {
+  width: 30px;
+  height: 30px;
 }
