@@ -39,6 +39,7 @@ html                 {
 //Коментарий//
 //Коментарий//
 body {
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +51,10 @@ body {
   background-size: 1920px auto;
 }
 p {
+  //display: grid;
+  //transition: all .5s;
+  //user-select: none;
+  //background: linear-gradient(to bottom, white, black);
   margin-bottom: 15px;
 }
 p:last-child {
