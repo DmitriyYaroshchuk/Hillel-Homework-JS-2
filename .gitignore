@@ -13,3 +13,4 @@ gulp/dist
 webpack/.idea
 webpack/node_modules
 webpack/dist
+swapi/.idea

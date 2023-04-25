@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="swapi">
+                <h1 class="swapi__title">SWAPI</h1>
+                <form class="swapi__form js--form" action="https://swapi.dev/api" method="get">
+                    <span class="swapi__url-span js--url-span">https://swapi.dev/api</span>
+                    <label class="swapi__label" for="url">
+                        <input id="url" value="/planets/3/" class="swapi__input js--url-input" type="text" placeholder="/people/1/">
+                    </label>
+                    <button class="swapi__button  js--button-request">Get info</button>
+                </form>
+                <div class="swapi-result">
+                    <div class="swapi-result__container">
+                        <div class="swapi-result__info">
+                            <div class="swapi-result__id"></div>
+                            <div class="swapi-result__controller"></div>
+                        </div>
+                        <pre class="swapi-result__code js--code"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
