@@ -7,7 +7,7 @@ function mainFunc( options ) {
         const { fulfillRequest } = await import('./module.js');
         const fixInputUrl = inputUrl.value.trim();
         // console.log(typeof fixInputUrl, fixInputUrl);
-        const regExp = /^\/[a-z]*\/?\d*\/?$/;
+        const regExp = /^\/([a-z]*\/\d+\/)?$/;
         const validateInput = regExp.test(fixInputUrl);
         // console.log('inputUrl:', inputUrl);
         // console.log('validateInput:', validateInput);
@@ -39,6 +39,7 @@ function mainFunc( options ) {
             }
         }
         else {
+            alert('Please check again the correctness of the data of the field');
             console.error('Please check again the correctness of the data of the field');
         }
     })

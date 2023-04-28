@@ -1,5 +1,5 @@
 export async function fulfillRequest (spanUrl, inputUrl) {
-    const response = await fetch(`${spanUrl}/${inputUrl}`, {
+    const response = await fetch(`${spanUrl}${inputUrl}`, {
         method: 'GET'
     });
     if (!response.ok) console.error('Something has happened');
