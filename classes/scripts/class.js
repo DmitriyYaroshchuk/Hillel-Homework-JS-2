@@ -107,7 +107,8 @@ class ButtonElement extends FormElement {
         newElement.setAttribute('value', this.value);
         newElement.textContent = 'Register';
         this.parentWrapper.append(newElement);
-        return this.parent.append(this.parentWrapper);
+        this.parent.append(this.parentWrapper);
+        return newElement.addEventListener('click', getInfo);
     }
 }
 const elButton = new ButtonElement('button', 'submit', 'submit',{
@@ -115,56 +116,66 @@ const elButton = new ButtonElement('button', 'submit', 'submit',{
     parent: document.querySelector('.js--form'),
 });
 elButton.createField();
-
-
-try {
-    function getInfo(event) {
-        event.preventDefault();
-
-        const regExpName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-        if (regExpName.test(elName.getValue())) {
-            elName.showName();
-            console.log('Value-Name: ', elName.getValue());
-        } else {
-            console.log('Value-Name: ', elName.getValue());
-            console.error('Проверьте парвильность ввода поля Имя');
-        }
-
-        const regExpMail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
-        if (regExpMail.test(elMail.getValue())) {
-            elMail.showName();
-            console.log('Value-Mail: ', elMail.getValue());
-        } else {
-            console.log('Value-Mail: ', elMail.getValue());
-            console.error('Проверьте парвильность ввода поля Почта');
-        }
-
-        const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
-        if (regExpPassword.test(elPassword.getValue())) {
-            if (elPassword.getValue() === elPasswordRepeat.getValue()) {
-                elPassword.showName();
-                console.log('Value-Password: ', elPassword.getValue());
-                elPasswordRepeat.showName();
-                console.log('Value-PasswordRepeat: ', elPasswordRepeat.getValue());
-            } else {
-                console.log('Value-Password: ', elPassword.getValue());
-                console.log('Value-PasswordRepeat: ', elPasswordRepeat.getValue());
-                console.error('Пароли не совпадают');
-            }
-        } else {
-            console.error('Проверьте правильность ввода поля Пароль')
-        }
-
-        const checkbox = document.querySelector('input[name="checkbox"]');
-        if (checkbox.checked) {
-            elCheckbox.showName();
-            console.log('Value-Checkbox: ', elCheckbox.getValue());
-        } else {
-            console.error('Checkbox is not checked');
-        }
-        elButton.showName();
-        console.log('Value-Button: ', elButton.getValue());
-    }
-} catch (error) {
-    console.error(error)
+function getInfo(event) {
+    event.preventDefault();
+    console.log('Value-Name: ', elName.getValue());
+    console.log('Value-Mail: ', elMail.getValue());
+    console.log('Value-Password: ', elPassword.getValue());
+    console.log('Value-PasswordRepeat: ', elPasswordRepeat.getValue());
+    console.log('Value-Checkbox: ', elCheckbox.getValue());
+    console.log('Value-Button: ', elButton.getValue());
 }
+
+// try {
+//     function getInfo(event) {
+//         event.preventDefault();
+//
+//         const regExpName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+//         if (regExpName.test(elName.getValue())) {
+//             elName.showName();
+//             console.log('Value-Name: ', elName.getValue());
+//         } else {
+//             console.log('Value-Name: ', elName.getValue());
+//             console.error('Проверьте парвильность ввода поля Имя');
+//         }
+//
+//         const regExpMail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+//         if (regExpMail.test(elMail.getValue())) {
+//             elMail.showName();
+//             console.log('Value-Mail: ', elMail.getValue());
+//         } else {
+//             console.log('Value-Mail: ', elMail.getValue());
+//             console.error('Проверьте парвильность ввода поля Почта');
+//         }
+//
+//         const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+//         if (regExpPassword.test(elPassword.getValue())) {
+//             if (elPassword.getValue() === elPasswordRepeat.getValue()) {
+//                 elPassword.showName();
+//                 console.log('Value-Password: ', elPassword.getValue());
+//                 elPasswordRepeat.showName();
+//                 console.log('Value-PasswordRepeat: ', elPasswordRepeat.getValue());
+//             } else {
+//
+//                 console.error('Пароли не совпадают');
+//             }
+//         } else {
+//             console.log('Value-Password: ', elPassword.getValue());
+//             console.log('Value-PasswordRepeat: ', elPasswordRepeat.getValue());
+//             console.error('Проверьте правильность ввода поля Пароль')
+//         }
+//
+//         const checkbox = document.querySelector('input[name="checkbox"]');
+//         if (checkbox.checked) {
+//             elCheckbox.showName();
+//             console.log('Value-Checkbox: ', elCheckbox.getValue());
+//         } else {
+//             console.error('Checkbox is not checked');
+//         }
+//         elButton.showName();
+//         console.log('Value-Button: ', elButton.getValue());
+//     }
+// } catch (error) {
+//     console.error(error)
+// }
+
