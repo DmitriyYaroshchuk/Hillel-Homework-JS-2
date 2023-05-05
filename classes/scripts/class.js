@@ -24,6 +24,7 @@ class TextElement extends FormElement {
         newElement.classList.add(`form__label`);
         newElement.innerHTML = `<input class='form__input ${this.classInput}' placeholder="${placeholder}" name="${this.name}"type="${this.type}" value="${this.value}" required>`
         this.parentWrapper.append(newElement);
+        newElement.addEventListener('click', this.getValue())
         return this.parent.append(this.parentWrapper);
     }
 }
@@ -74,7 +75,8 @@ class CheckboxElement extends FormElement {
         newElement.innerHTML = `<input class='form__input form__input-checkbox ${this.classInput}' name="${this.name}" type="${this.type}" value="${this.value}" ${check} required>`+
                             `<p class="form__text">I agree all statements in <a class="form__link" href="#">Terms of service</a></p>`;
         this.parentWrapper.append(newElement);
-        return this.parent.append(this.parentWrapper);
+        this.parent.append(this.parentWrapper);
+        return newElement.addEventListener('click', this.getValue())
 
     }
 
@@ -101,14 +103,13 @@ class ButtonElement extends FormElement {
         const newElement = document.createElement('button');
         newElement.classList.add('form__button');
         newElement.classList.add('js--form__button');
-        newElement.setAttribute('onclick', 'getInfo(event)')
         newElement.setAttribute('name',this.name);
         newElement.setAttribute('type', this.type);
         newElement.setAttribute('value', this.value);
         newElement.textContent = 'Register';
         this.parentWrapper.append(newElement);
         this.parent.append(this.parentWrapper);
-        return newElement.addEventListener('click', getInfo);
+        return newElement.addEventListener('click', getInfo)
     }
 }
 const elButton = new ButtonElement('button', 'submit', 'submit',{
