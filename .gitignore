@@ -14,4 +14,7 @@ webpack/.idea
 webpack/node_modules
 webpack/dist
 swapi/.idea
-/swapi—class/.idea
+swapi—class/.idea
+classes/.idea
+classes/node_modules
+classes/dist

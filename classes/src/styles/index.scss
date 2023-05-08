@@ -1,3 +1,6 @@
+//_________Colors_________//
+@import "components/colors";
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: whitesmoke;
+    background-color: $whitesmoke;//
 
 }
 .form {
@@ -15,10 +18,10 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 40px 0;
-    box-shadow: 0 4px 26px #ccc;
+    box-shadow: 0 4px 26px $light-telegray;
     font-family: sans-serif;
     line-height: 100%;
-    background: aliceblue;
+    background: $aliceblue;
 }
 .form__container {
     max-width: 470px;
@@ -40,38 +43,39 @@ body {
     outline: none;
     border-radius: 6px;
     transition: border-color 150ms ease-in-out 0s, box-shadow;
-    background: rgb(255, 255, 255);
-    border: 1px solid rgb(136, 147, 151);
-    color: rgb(61, 79, 88);
+    background: $white;//
+    border: 1px solid $silver-gray;//
+    color: $grayish-blue;
 }
 .form__input::placeholder {
-    color: #adadad;
+    color: $white-aluminum;//
     font-size: 13px;
 }
 .form__input:active,
 .form__input:hover {
-    box-shadow: rgb(232, 237, 235) 0 0 0 3px;
+    box-shadow: $grideperle 0 0 0 3px;//
 }
 .form__input:focus {
-    box-shadow: rgb(4, 152, 236) 0 0 0 3px;
-    border-color: rgb(255, 255, 255);
+    box-shadow: $aqua 0 0 0 3px;//
+    border-color: $white;
 }
 .form__label-checkbox {
     max-width: 330px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row-reverse;
 }
 .form__input-checkbox {
     width: 18px;
     height: 18px;
 }
 .form__text {
-    color: darkblue;
+    color: $darkblue;
 }
 .form__link {
     text-decoration: none;
-    color: #9B8FFF;
+    color: $heavenly;//
     font-size: 14px;
 }
 .form__button {
@@ -82,19 +86,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: deepskyblue;
-    color: white;
+    background-color: $deepskyblue;//
+    color: $white;
     border-radius: 10px;
     margin: 0 auto;
-    border: blue 2px solid;
+    border: $blue 2px solid;//
     transition: background-color 0.5s ease 0s;
-    box-shadow: 0 0 18px 0 #3F51B5;
+    box-shadow: 0 0 18px 0 $violet-blue-crayola;//
 }
 .form__button:hover {
-    background-color: #04789f;
+    background-color: $azure-gray;//
 }
 .form__button:active {
-    background-color: #3f51b5;
+    background-color: $violet-blue-crayola;
 }
 /*.form__label-checkbox {*/
 /*    display: flex;*/
