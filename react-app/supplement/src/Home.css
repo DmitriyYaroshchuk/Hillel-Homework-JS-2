@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: darkcyan;
+    font-family:  sans-serif;
+    /*font-weight: 400;*/
+    font-style: normal;
+    /*font-size: 20px;*/
+    line-height: 100%;
+
+}
+li {
+    padding-left: 0;
+    list-style: none;
+}
+li:last-child {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+#root {
+    width: 100%;
+}
+.wrapper {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+}
+.container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+header,
+main {
+    box-sizing: border-box;
+    padding: 30px 0;
+    background-color: lightblue;
+    border: 2px solid deepskyblue;
+    border-radius: 10px 10px 0 0;
+}
+.logo {
+    text-align: center;
+    font-weight: 700;
+    font-size: 22px;
+    cursor: pointer;
+    color: blue;
+}
+main {
+    border-radius: 0 0 10px 10px
+}
+.main__content {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 16% 22% 25% 37%;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.nav {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+    text-align: center;
+}
+.nav__list {
+    width: 100%;
+}
+.nav__item {
+    font-weight: 400;
+    font-size: 18px;
+    color: slateblue;
+    margin-bottom: 15px;
+    transition: color ease-in 0.4s;
+    cursor: pointer;
+}
+.nav__item:hover {
+    color: #05f1f1;
+}
+.form {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    max-width: 400px;
+    width: 100%;
+}
+.form__label {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto 25px;
+}
+.form .form__label:last-child {
+    margin-bottom: 0;
+}
+.form__input {
+    box-sizing: border-box;
+    padding: 12px 0 12px 12px;
+    width: 100%;
+    border: 2px solid silver;
+    border-radius: 10px;
+    outline: none;
+    font-weight: 400;
+    font-size: 17px;
+}
+.form__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 45px;
+    max-width: 170px;
+    width: 100%;
+    background-color: cadetblue;
+    border: 2px solid lightcyan;
+    color: gainsboro;
+    border-radius: 10px;
+}
