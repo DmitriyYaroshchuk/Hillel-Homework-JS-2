@@ -24,6 +24,12 @@ export default class Main extends React.Component {
             return {[id]: state[id] + 1}
         })
     }
+    checkWinner(id) {
+        console.log({[id]: Math.max(...Object.values(this.state))})
+        return this.setState({
+            [id]:Math.max(...Object.values(this.state))
+        })
+    }
   render() {
     return (
         <Wrapper>
