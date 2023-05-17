@@ -2,9 +2,9 @@ import React from "react";
 
 export default class Button extends React.Component {
     render() {
-            const { id, text } = this.props;
+            const { id, text, onClick } = this.props;
         return (
-            <button className="button" id={id}>{text}</button>
+            <button onClick={onClick} className="button" id={id}>{text}</button>
         )
     }
 }
