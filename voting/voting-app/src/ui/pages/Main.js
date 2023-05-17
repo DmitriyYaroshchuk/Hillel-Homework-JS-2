@@ -7,6 +7,12 @@ import ButtonResult from "../components/ButtonResult";
 import Winner from "../components/Winner";
 
 export default class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
   render() {
     return (
         <Wrapper>
