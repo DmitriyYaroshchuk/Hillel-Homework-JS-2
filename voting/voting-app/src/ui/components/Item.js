@@ -4,12 +4,12 @@ import Count from "./Count";
 
 export default class Item extends React.Component {
     render() {
-        const { id, text, increaseVote } = this.props;
+        const { id, text, state, increaseVote } = this.props;
         const onClick = () => increaseVote(id);
         return (
             <li>
                 <Button onClick={onClick} id={id} text={text}/>
-                <Count text={onClick[id]}/>
+                <Count text={state[id]}/>
             </li>
         )
     }

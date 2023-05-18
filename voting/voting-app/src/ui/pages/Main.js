@@ -17,30 +17,38 @@ export default class Main extends React.Component {
             vote5: 0,
         }
         this.increaseVote = this.increaseVote.bind(this);
+        this.checkWinner = this.checkWinner.bind(this);
     }
     increaseVote(id) {
-        this.setState(state => {
+        return this.setState(state => {
             console.log({[id]: state[id]});
-            return {[id]: state[id] + 1}
+            return {
+                [id]: state[id] + 1
+            }
         })
     }
     checkWinner(id) {
+        console.log(typeof id)
+        console.log(id)
+        console.log(typeof{[id]: Math.max(...Object.values(this.state))})
         console.log({[id]: Math.max(...Object.values(this.state))})
-        return this.setState({
-            [id]:Math.max(...Object.values(this.state))
+        return this.setState(state => {
+            return JSON.stringify({
+                [id]: Math.max(...Object.values(state))
+            })
         })
     }
   render() {
     return (
         <Wrapper>
           <List>
-            <Item text="&#128540;" id="vote1" increaseVote={this.increaseVote}/>
-            <Item text="&#128520;" id="vote2" increaseVote={this.increaseVote}/>
-            <Item text="&#128640;" id="vote3" increaseVote={this.increaseVote}/>
-            <Item text="&#128526;" id="vote4" increaseVote={this.increaseVote}/>
-            <Item text="&#128566;" id="vote5" increaseVote={this.increaseVote}/>
+            <Item text="&#128540;" id="vote1" increaseVote={this.increaseVote} state={this.state}/>
+            <Item text="&#128520;" id="vote2" increaseVote={this.increaseVote} state={this.state}/>
+            <Item text="&#128640;" id="vote3" increaseVote={this.increaseVote} state={this.state}/>
+            <Item text="&#128526;" id="vote4" increaseVote={this.increaseVote} state={this.state}/>
+            <Item text="&#128566;" id="vote5" increaseVote={this.increaseVote} state={this.state}/>
           </List>
-          <ButtonResult/>
+          <ButtonResult checkWinner={this.checkWinner} />
           <Winner/>
         </Wrapper>
     )
