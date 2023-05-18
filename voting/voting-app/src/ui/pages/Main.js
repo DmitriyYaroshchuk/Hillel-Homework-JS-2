@@ -20,22 +20,17 @@ export default class Main extends React.Component {
         this.checkWinner = this.checkWinner.bind(this);
     }
     increaseVote(id) {
-        return this.setState(state => {
-            console.log({[id]: state[id]});
+        this.setState(state => {
             return {
                 [id]: state[id] + 1
             }
         })
     }
-    checkWinner(id) {
-        console.log(typeof id)
-        console.log(id)
-        console.log(typeof{[id]: Math.max(...Object.values(this.state))})
-        console.log({[id]: Math.max(...Object.values(this.state))})
-        return this.setState(state => {
-            return JSON.stringify({
-                [id]: Math.max(...Object.values(state))
-            })
+    checkWinner() {
+        const winner = Math.max(...Object.values(this.state))
+        console.log('winner: ', winner)
+        this.setState( {
+            winner
         })
     }
   render() {
@@ -49,7 +44,7 @@ export default class Main extends React.Component {
             <Item text="&#128566;" id="vote5" increaseVote={this.increaseVote} state={this.state}/>
           </List>
           <ButtonResult checkWinner={this.checkWinner} />
-          <Winner/>
+          <Winner winner={this.state.winner}/>
         </Wrapper>
     )
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import ButtonSmile from "./ButtonSmile";
 import Count from "./Count";
 
 export default class Item extends React.Component {
@@ -8,7 +8,7 @@ export default class Item extends React.Component {
         const onClick = () => increaseVote(id);
         return (
             <li>
-                <Button onClick={onClick} id={id} text={text}/>
+                <ButtonSmile onClick={onClick} id={id} text={text}/>
                 <Count text={state[id]}/>
             </li>
         )

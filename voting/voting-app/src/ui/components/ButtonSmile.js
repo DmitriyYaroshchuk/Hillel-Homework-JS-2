@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Button extends React.Component {
+export default class ButtonSmile extends React.Component {
     render() {
             const { id, text, onClick } = this.props;
         return (
