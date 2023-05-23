@@ -11,11 +11,11 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             items: [
-                { id: 0, count: 0, smile: '&#128540;' },
-                { id: 1, count: 0, smile: '&#128520;' },
-                { id: 2, count: 0, smile: '&#128640;' },
-                { id: 3, count: 0, smile: '&#128640;' },
-                { id: 4, count: 0, smile: '&#128566;' },
+                { id: 0, count: 0, smile: '\u{1F604}' },
+                { id: 1, count: 0, smile: '\u{1F608}' },
+                { id: 2, count: 0, smile: '\u{1F640}' },
+                { id: 3, count: 0, smile: '\u{1F636}' },
+                { id: 4, count: 0, smile: '\u{1F566}' },
             ],
             winner: null,
         }
@@ -56,11 +56,9 @@ export default class Main extends React.Component {
     return (
         <Wrapper>
           <List>
-            <Item id={items[0].id} count={items[0].count} text={items[0].smile} increaseVote={this.increaseVote}/>
-            <Item id={items[1].id} count={items[1].count} text={items[1].smile} increaseVote={this.increaseVote}/>
-            <Item id={items[2].id} count={items[2].count} text={items[2].smile} increaseVote={this.increaseVote}/>
-            <Item id={items[3].id} count={items[3].count} text={items[3].smile} increaseVote={this.increaseVote}/>
-            <Item id={items[4].id} count={items[4].count} text={items[4].smile} increaseVote={this.increaseVote}/>
+              {
+                  items.map(item => <Item key={item.id} id={item.id} count={item.count} smile={item.smile} increaseVote={this.increaseVote}/>)
+              }
           </List>
           <ButtonResult checkWinner={this.checkWinner}/>
           <Winner text={winner}/>

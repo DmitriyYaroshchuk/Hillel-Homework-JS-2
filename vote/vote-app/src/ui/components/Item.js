@@ -4,11 +4,11 @@ import Count from "./Count";
 
 export default class Item extends React.Component {
     render() {
-        const { id, text, count, increaseVote } = this.props;
+        const { id, smile, count, increaseVote } = this.props;
         const onClick = () => increaseVote(id);
         return (
             <li>
-                <ButtonSmile onClick={onClick} id={id} text={text}/>
+                <ButtonSmile onClick={onClick} id={id} smile={smile}/>
                 <Count count={count}/>
             </li>
         )
