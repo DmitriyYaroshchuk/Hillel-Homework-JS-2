@@ -8,11 +8,11 @@ class TodoItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hide: false
+            hide: false,
         }
-        this.changeEditing = this.changeEditing.bind(this);
+        this.showContent = this.showContent.bind(this);
     }
-    changeEditing() {
+    showContent() {
         this.setState({
             hide: !this.state.hide,
         });
@@ -24,12 +24,12 @@ class TodoItem extends React.Component {
         return (
             <div className="todo-item">
                 {
-                    hide ? (<Input/>) : <div className="todo-item__description">{text}</div>
+                    hide ? (<Input editableText={text}/>) : <div className="todo-item__description">{text}</div>
                 }
                 {
                     hide ? (<ButtonSave customClass='todo-item__button-save'/>) :
                         <>
-                            <ButtonEdit changeEditing={this.changeEditing} />
+                            <ButtonEdit showContent={this.showContent} />
                             <Button onClick={onClick} text="Удалить" customClass="todo-item__delete"/>
                         </>
                 }
