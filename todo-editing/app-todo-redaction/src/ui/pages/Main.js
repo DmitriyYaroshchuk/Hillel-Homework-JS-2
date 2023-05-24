@@ -11,6 +11,7 @@ class Main extends React.Component {
         }
         this.handleAdd = this.handleAdd.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleEditing = this.handleEditing.bind(this);
     }
     componentDidMount() {
         this.setState({
@@ -42,6 +43,22 @@ class Main extends React.Component {
             }
         })
     }
+    handleEditing(id, newText) {
+        this.setState(state => {
+            const { items } = state;
+            const updatedItems = items.map(item => {
+                if (item.id === id) {
+                    return { ...item, text: newText }
+                }
+                return item
+            })
+            localStorage.setItem('items', JSON.stringify(updatedItems));
+            return {
+                items: updatedItems
+            }
+        })
+
+    }
     render() {
         const { items } = this.state
         return (
@@ -52,7 +69,7 @@ class Main extends React.Component {
                     <div>
                         {
                             items.map(item =>
-                                <TodoItem key={item.id} text={item.text} id={item.id} handleRemove={this.handleRemove} />
+                                <TodoItem key={item.id} text={item.text} id={item.id} handleRemove={this.handleRemove} handleEditing={this.handleEditing} />
                             )
                         }
 

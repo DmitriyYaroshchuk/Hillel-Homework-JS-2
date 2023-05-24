@@ -11,11 +11,17 @@ class TodoItem extends React.Component {
             hide: false,
         }
         this.showContent = this.showContent.bind(this);
+        this.saveChanges = this.saveChanges.bind(this);
     }
     showContent() {
         this.setState({
             hide: !this.state.hide,
         });
+    }
+    saveChanges() {
+        const { handleEditing, text, id } = this.props;
+        handleEditing(id, text)
+        this.showContent()
     }
     render() {
         const { text, id, handleRemove } = this.props;
@@ -27,7 +33,7 @@ class TodoItem extends React.Component {
                     hide ? (<Input editableText={text}/>) : <div className="todo-item__description">{text}</div>
                 }
                 {
-                    hide ? (<ButtonSave customClass='todo-item__button-save'/>) :
+                    hide ? (<ButtonSave saveChanges={this.saveChanges} customClass='todo-item__button-save'/>) :
                         <>
                             <ButtonEdit showContent={this.showContent} />
                             <Button onClick={onClick} text="Удалить" customClass="todo-item__delete"/>
