@@ -7,7 +7,7 @@
 body {
     line-height: 1.2;
     font-size: 18px;
-    background-color: #66deb2;
+    background-color: #66ddde;
 }
 
 h1, h2 {
@@ -39,10 +39,6 @@ button {
     justify-content: center;
 }
 
-label {
-    width: 100%;
-}
-
 .form__input {
     min-height: 25px;
     padding: 10px;
@@ -51,7 +47,7 @@ label {
 }
 
 .form__btn {
-    background: #0be69d;
+    background: #2196f3;
     border: none;
     cursor: pointer;
     width: 100px;
@@ -79,16 +75,23 @@ label {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    transition: 0.4s ease-in-out all;
+    border: 2px solid transparent;
 }
 .todo-item--checked {
-    text-decoration: line-through;
+    border: 2px solid #2196f3;
+    box-shadow: 0 0 10px 3px #2196f3;
 }
 .todo-item__description {
     flex-grow: 1;
     padding-left: 10px;
+    transition: 0.4s ease-in-out color;
+}
+.todo-item--checked .todo-item__description {
+    color: cornflowerblue;
 }
 .todo-item__delete {
-    background: #03a9f4;
+    background: #e91e63;
     border: none;
     cursor: pointer;
     width: 95px;
@@ -112,11 +115,6 @@ label {
     min-height: 35px;
     background-color: #cddc39;
 }
-.todo-item__container-field {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .todo-item__span {
     display: flex;
     justify-content: center;
@@ -126,26 +124,33 @@ label {
 }
 .todo-item__span::before {
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background-color: #cdd1d1;
     border-radius: 3px;
+    transition: 0.3s ease-in-out all;
+    border: 2px solid transparent;
 }
 .todo-item__span::after {
-    transition: transform 0.3s ease-in-out;
-    content: '';
-    width: 14px;
-    height: 14px;
+    display: inline-block;
+    transition-delay: 0s;
+    transition: 0.6s ease-in-out;
+    content: url("ui/components/Item/check.svg");
+    width: 16px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform:  scale(0);
-    background-color: deepskyblue;
+    transform: scale(0) translate(-50%, -50%);
+    background-color: transparent;
     border-radius: 3px;
 }
 .todo-item__checkbox {
     display: none;
 }
-.todo-item__container-field .todo-item__checkbox:checked + .todo-item__span::after {
+.todo-item__checkbox:checked + .todo-item__span::before {
+    border: 2px solid #5fb8fe;
+    box-shadow: 0 0 10px 3px #5fb8fe;
+}
+.todo-item__checkbox:checked + .todo-item__span::after {
     transform: scale(1) translate(-50%, -50%);
 }

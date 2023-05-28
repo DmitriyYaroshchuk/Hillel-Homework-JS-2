@@ -3,11 +3,13 @@ import Button from "../form/Button";
 import Input from "../form/Input";
 import ButtonSave from "./ButtonSave";
 import ButtonEdit from "./ButtonEdit";
+import CheckBox from "./CheckBox";
 
 
 export default function TodoItem(props) {
     const { text, id, handleRemove, handleEditing } = props;
     const [hide, setHide] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
     const inputRef = useRef(null);
     const showContent = () => {
         setHide(!hide);
@@ -18,10 +20,13 @@ export default function TodoItem(props) {
         handleEditing(id, currentText);
         showContent();
     }
+    const changeCheckbox = () => {
+        setIsChecked(!isChecked);
+    }
 
     const onClick = () => handleRemove(id);
     return (
-        <div className="todo-item">
+        <div className={`todo-item ${isChecked ? 'todo-item--checked' : ''}`}>
             {
                 hide ? <Input text={text} type='text' name='todo-name-editing' required={true} inputRef={inputRef}/> : <div className="todo-item__description">{text}</div>
             }
@@ -30,10 +35,7 @@ export default function TodoItem(props) {
                     <>
                         <ButtonEdit showContent={showContent}/>
                         <Button onClick={onClick} text="Удалить" customClass="todo-item__delete"/>
-                        <div className="todo-item__container-field">
-                            <Input type='checkbox' name='checkbox' customClass='todo-item__checkbox'/>
-                            <span className='todo-item__span'></span>
-                        </div>
+                        <CheckBox changeCheckbox={changeCheckbox} isChecked={isChecked}/>
                     </>
             }
         </div>
