@@ -1,0 +1,25 @@
+.error {
+    box-sizing: border-box;
+    padding: 100px 0;
+}
+.error__box-photo {
+    margin-bottom: 35px;
+    text-align: center;
+}
+.error__title {
+    font-family: 'Montserrat',sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 120%;
+    color: black;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.error__text {
+    font-family: 'Montserrat',sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 120%;
+    color: black;
+    text-align: center;
+}
