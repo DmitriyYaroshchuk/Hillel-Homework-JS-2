@@ -34,7 +34,6 @@ export default class ErrorBoundary extends React.Component {
                             </div>
                             <h1 className='error__title'>Fatal Error</h1>
                             <p className='error__text'>A fatal error has occurred, please contact support</p>
-
                         </div>
                     </Container>
                 </div>

@@ -37,7 +37,7 @@ h1,h2,h3,h4,h5,h6 {
 body {
     margin: 0 auto;
     min-height: 100vh;
-    /*background-color: #66ddde;*/
+    background-color: #66ddde;
     box-sizing: border-box;
 }
 button {

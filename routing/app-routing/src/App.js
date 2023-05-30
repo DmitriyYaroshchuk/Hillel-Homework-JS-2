@@ -9,18 +9,16 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {useState} from "react";
 import ErrorBoundary from "./containers/ErrorBoundary/ErrorBoundary";
 
-function App() {
+export default function App() {
     const [ error, setError ] = useState(false);
-    const [bgColor, setBgColor] = useState(false)
     const handleError = () => {
         setError(!error);
-        setBgColor(!bgColor);
     }
   return (
       <ErrorBoundary>
           <BrowserRouter>
               <Wrapper>
-                  <Header handleError={handleError} bgColor={bgColor}/>
+                  <Header handleError={handleError}/>
                   {error && {test:1}}
                   <main>
                       <Routes>
@@ -36,4 +34,3 @@ function App() {
   );
 }
 
-export default App;

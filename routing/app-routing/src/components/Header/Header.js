@@ -4,14 +4,7 @@ import {Link} from "react-router-dom";
 import {useEffect} from "react";
 
 export default function Header(props) {
-    const { handleError, bgColor } = props;
-    useEffect(() => {
-        if(bgColor) {
-            document.body.style.backgroundColor = '#750202';
-        } else {
-            document.body.style.backgroundColor = '#66ddde';
-        }
-    },[bgColor])
+    const { handleError } = props;
     return (
         <header>
             <Container>
