@@ -2,17 +2,16 @@ import React from "react";
 import cx from "classnames";
 
 export default function Input(props) {
-    const { text, type, name, required, inputRef, customClass, isChecked, changeCheckbox } = props;
+    const { value, type, name, required, customClass, isChecked, changeCheckbox, onChange } = props;
     const className = cx('form__input', { [customClass]: customClass })
     return (
-        <input defaultValue={text}
+        <input value={value}
                type={type}
                name={name}
                required={required}
                className={className}
-               ref={inputRef}
                checked={isChecked}
-               onChange={changeCheckbox}
+               onChange={changeCheckbox} //onChange
         />
     )
 }

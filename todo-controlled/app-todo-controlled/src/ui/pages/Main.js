@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../components/Header";
 import TodoItem from "../components/Item/TodoItem";
 import TodoForm from "../containers/TodoForm";
@@ -7,7 +7,7 @@ import Container from "../containers/Container";
 import {useFormField} from "../hooks/useFormField";
 export default function Main() {
     const [ items, setItems ] = useState([]);
-    const inputRef = useRef(null);
+    const todoInput = useFormField('');
     useEffect(
         () => {
             const storedItems = JSON.parse(localStorage.getItem('items')) || [];
@@ -15,17 +15,16 @@ export default function Main() {
         },
         []
     );
-    const todoInput = useFormField('');
     const handleAdd = (event) => {
         event.preventDefault();
-        const text = inputRef.current.value;
+        const text = todoInput.value;
         const newItems = [
             ...items,
             { id: Math.floor(Math.random() * 100), text }
         ];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems));
-        inputRef.current.value = '';
+        todoInput.value = '';
     }
     const handleRemove = (id) => {
         const newItems = items.filter(item => item.id !== id);
@@ -46,11 +45,18 @@ export default function Main() {
         <>
             <Container>
                 <Header/>
-                <TodoForm handleAdd={handleAdd} inputRef={inputRef}/>
+                <TodoForm handleAdd={handleAdd}
+                          value={todoInput.value}
+                          onChange={todoInput.onChange}
+                />
                 <div>
                     {
                         items.map(item =>
-                            <TodoItem key={item.id} text={item.text} id={item.id} handleRemove={handleRemove} handleEditing={handleEditing}/>
+                            <TodoItem key={item.id}
+                                      text={item.text}
+                                      id={item.id}
+                                      handleRemove={handleRemove}
+                                      handleEditing={handleEditing}/>
                         )
                     }
 
