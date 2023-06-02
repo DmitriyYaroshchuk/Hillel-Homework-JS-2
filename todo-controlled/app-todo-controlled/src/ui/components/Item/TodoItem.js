@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import Button from "../form/Button"
 import Input from "../form/Input";
 import ButtonSave from "./ButtonSave";
@@ -15,6 +15,7 @@ export default function TodoItem(props) {
     const showContent = () => {
         setHide(!hide);
     }
+
     const saveChanges = () => {
         const currentText = todoInput.value;
         console.log('text: ', currentText);
@@ -40,8 +41,11 @@ export default function TodoItem(props) {
                 hide ? <ButtonSave saveChanges={saveChanges} customClass='todo-item__button-save'/> :
                     <>
                         <ButtonEdit showContent={showContent}/>
-                        <Button onClick={onClick} text="Удалить" customClass="todo-item__delete"/>
-                        <CheckBox changeCheckbox={changeCheckbox} isChecked={isChecked}/>
+                        <Button onClick={onClick}
+                                text="Удалить"
+                                customClass="todo-item__delete"
+                        />
+                        <CheckBox onChange={changeCheckbox} isChecked={isChecked}/>
                     </>
             }
         </div>
