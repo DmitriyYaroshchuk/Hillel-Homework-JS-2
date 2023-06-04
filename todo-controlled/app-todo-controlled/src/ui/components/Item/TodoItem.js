@@ -11,7 +11,7 @@ export default function TodoItem(props) {
     const { text, id, handleRemove, handleEditing, } = props;
     const [hide, setHide] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-    const todoInput = useFormField('');
+    const todoInput = useFormField(text);
     const showContent = () => {
         setHide(!hide);
     }
