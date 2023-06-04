@@ -17,14 +17,14 @@ export default function Main() {
     );
     const handleAdd = (event) => {
         event.preventDefault();
-        const text = todoInput.value;
+        let text = todoInput.value;
         const newItems = [
             ...items,
             { id: Math.floor(Math.random() * 100), text }
         ];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems));
-        todoInput.value = '';
+        todoInput.onChange({target: {value: ''}});
     }
     const handleRemove = (id) => {
         const newItems = items.filter(item => item.id !== id);
