@@ -16,7 +16,7 @@ export default function Main(props) {
         []
     )
     const handleAdd = (event) => {
-        console.log(event);
+        console.log('event: ', event);
         event.preventDefault();
         const text = inputRef.current.value;
         const newItems = [
@@ -25,6 +25,7 @@ export default function Main(props) {
         ];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems));
+        console.log(inputRef.current.value = '')
         inputRef.current.value = '';
     }
     const handleRemove = (id) => {

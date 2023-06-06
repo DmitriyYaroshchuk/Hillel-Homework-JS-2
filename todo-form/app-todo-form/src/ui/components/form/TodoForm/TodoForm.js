@@ -9,7 +9,7 @@ export default function TodoForm(props) {
     return (
         <Form
             onSubmit={handleAdd}
-            render={() => <Login handleAdd={handleAdd} inputRef={inputRef} />}
+            render={(props) => <Login handleAdd={handleAdd} inputRef={inputRef} { ...props } />}
         />
     )
 

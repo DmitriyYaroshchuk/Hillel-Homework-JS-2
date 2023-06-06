@@ -34,7 +34,6 @@ export default function TodoItem(props) {
         <div className={`${classes['todo-item']} ${isChecked ? classes['todo-item--checked'] : ''}`}>
             {
                 hide ? <Input text={text}
-                              type='text'
                               name='todo-name-editing'
                               required={true}
                               inputRef={inputRef}
