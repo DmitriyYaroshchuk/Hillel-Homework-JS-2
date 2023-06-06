@@ -5,11 +5,14 @@ import ButtonSave from "../ButtonSave/ButtonSave";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
 import CheckBox from "../CheckBox/CheckBox";
 import useStyles from "./useStyles";
+import useStylesBtnSave from "../ButtonSave/useStyles";
+
 
 
 export default function TodoItem(props) {
     const classes = useStyles(props);
-    const { text, id, handleRemove, handleEditing } = props;
+    const classBtnSave = useStylesBtnSave(props);
+    const {text, id, handleRemove, handleEditing} = props;
     const [hide, setHide] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const inputRef = useRef(null);
@@ -30,16 +33,25 @@ export default function TodoItem(props) {
     return (
         <div className={`${classes['todo-item']} ${isChecked ? classes['todo-item--checked'] : ''}`}>
             {
-                hide ? <Input text={text} type='text' name='todo-name-editing' required={true} inputRef={inputRef}/> : <div className={`
-                ${classes['todo-item__description']}
-                ${classes['todo-item--checked .todo-item__description']}
-                `}>{text}</div>
+                hide ? <Input text={text}
+                              type='text'
+                              name='todo-name-editing'
+                              required={true}
+                              inputRef={inputRef}
+                    /> :
+                    <div className={`${classes['todo-item__description']}`}>{text}</div>
             }
             {
-                hide ? <ButtonSave saveChanges={saveChanges} customClass='todo-item__button-save'/> :
+                hide ? <ButtonSave
+                        saveChanges={saveChanges}
+                        customClass={`${classBtnSave['todo-item__button-save']}`}
+                    /> :
                     <>
                         <ButtonEdit showContent={showContent}/>
-                        <Button onClick={onClick} text="Удалить" customClass={`${classes['todo-item__delete']}`}/>
+                        <Button onClick={onClick}
+                                text="Удалить"
+                                customClass={`${classes['todo-item__delete']}`}
+                        />
                         <CheckBox changeCheckbox={changeCheckbox} isChecked={isChecked}/>
                     </>
             }

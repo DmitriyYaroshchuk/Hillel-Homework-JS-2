@@ -15,15 +15,16 @@ const useStyles = createUseStyles({
     'todo-item--checked': {
         'border': '2px solid #2196f3',
         ' box-shadow': '0 0 10px 3px #2196f3',
+        '& $todo-item__description': {
+            'color': '#6495EDFF',
+        },
     },
     'todo-item__description': {
         'flex-grow': '1',
         'padding-left': '10px',
         'transition': '0.4s ease-in-out color',
     },
-    'todo-item--checked .todo-item__description': {
-        'color': '#6495EDFF',
-    },
+
     'todo-item__delete': {
         'background': '#e91e63',
         'border': 'none',

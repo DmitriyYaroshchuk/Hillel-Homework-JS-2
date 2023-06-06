@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import Header from "../../components/Header";
 import TodoItem from "../../components/Item/TodoItem/TodoItem";
-import TodoForm from "../../containers/TodoForm/TodoForm";
+import TodoForm from "../../components/form/TodoForm/TodoForm";
 import '../../../reset.css'
 import useStyles from "./useStyles";
 export default function Main(props) {
@@ -16,6 +16,7 @@ export default function Main(props) {
         []
     )
     const handleAdd = (event) => {
+        console.log(event);
         event.preventDefault();
         const text = inputRef.current.value;
         const newItems = [

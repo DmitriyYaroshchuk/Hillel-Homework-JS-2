@@ -1,10 +1,12 @@
 import React from "react";
 import cx from "classnames";
-import './Button.css';
+import useStyles from "./useStyles";
+
 
 export default function Button(props) {
+    const classes = useStyles(props);
     const { text, onClick, customClass } = props;
-    const className = cx('form__btn', {[customClass]: customClass});
+    const className = cx(`${classes['form__btn']}`, {[customClass]: customClass});
     return (
         <button onClick={onClick} type='submit' className={className}>{text}</button>
     )
