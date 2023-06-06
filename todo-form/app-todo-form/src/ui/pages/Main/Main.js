@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../../components/Header";
 import TodoItem from "../../components/Item/TodoItem/TodoItem";
 import TodoForm from "../../components/form/TodoForm/TodoForm";
@@ -7,7 +7,6 @@ import useStyles from "./useStyles";
 export default function Main(props) {
     const classes = useStyles(props)
     const [ items, setItems ] = useState([]);
-    const inputRef = useRef(null);
     useEffect(
         () => {
             const storedItems = JSON.parse(localStorage.getItem('items')) || [];
@@ -18,15 +17,15 @@ export default function Main(props) {
     const handleAdd = (event) => {
         console.log('event: ', event);
         event.preventDefault();
-        const text = inputRef.current.value;
+        const text = event.target.elements.todoInput.value;
+        console.log('text: ',text)
         const newItems = [
             ...items,
             { id: Math.floor(Math.random() * 100), text }
         ];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems));
-        console.log(inputRef.current.value = '')
-        inputRef.current.value = '';
+
     }
     const handleRemove = (id) => {
         const newItems = items.filter(item => item.id !== id);
@@ -47,14 +46,13 @@ export default function Main(props) {
         <div className={classes.wrapper}>
             <div className={classes.container}>
                 <Header/>
-                <TodoForm handleAdd={handleAdd} inputRef={inputRef}/>
+                <TodoForm handleAdd={handleAdd}/>
                 <div>
                     {
                         items.map(item =>
                             <TodoItem key={item.id} text={item.text} id={item.id} handleRemove={handleRemove} handleEditing={handleEditing}/>
                         )
                     }
-
                 </div>
             </div>
         </div>

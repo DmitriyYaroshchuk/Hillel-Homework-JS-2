@@ -5,20 +5,18 @@ import useStyles from "../TodoForm/useStyles";
 import {Field} from "react-final-form";
 
 const Login = (props) => {
-    const { handleAdd, inputRef, values, pristine, submitting } = props;
+    const { handleSubmit, values, pristine, submitting } = props;
+    console.log('handleSubmit', handleSubmit);
     console.log('Login-props: ', props);
-    console.log('Values: ', values, 'Pristine: ', pristine, 'Submitting :', submitting)
+    console.log('Values: ', values, 'Pristine: ', pristine, 'Submitting :', submitting);
     const classes = useStyles(props);
     return (
-        <form className={classes.form} onSubmit={handleAdd}>
+        <form className={classes.form} onSubmit={handleSubmit}>
             <Field
                 label="todoInput"
                 name="todoInput"
-                component={(props) =>
-                    <Input
-                        {...props}
-                        inputRef={inputRef}
-                    />}
+                type="text"
+                component={Input}
             />
             <Button text="Добавить"/>
         </form>

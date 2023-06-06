@@ -4,12 +4,14 @@ import Login from "../Login/Login";
 
 
 export default function TodoForm(props) {
-
-    const { handleAdd, inputRef } = props;
+    const { handleAdd } = props;
+    const handleSubmit = () => {
+        handleAdd()
+    }
     return (
         <Form
-            onSubmit={handleAdd}
-            render={(props) => <Login handleAdd={handleAdd} inputRef={inputRef} { ...props } />}
+            onSubmit={handleSubmit}
+            render={Login}
         />
     )
 

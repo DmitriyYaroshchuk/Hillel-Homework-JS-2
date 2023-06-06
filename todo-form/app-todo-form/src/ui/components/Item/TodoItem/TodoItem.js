@@ -19,8 +19,10 @@ export default function TodoItem(props) {
     const showContent = () => {
         setHide(!hide);
     }
-    const saveChanges = () => {
-        const currentText = inputRef.current.value;
+    const saveChanges = (event) => {
+        // const currentText = inputRef.current.value;
+        const currentText = event.target.value;
+        console.log(event.target)
         console.log('text: ', currentText);
         handleEditing(id, currentText);
         showContent();
@@ -34,7 +36,7 @@ export default function TodoItem(props) {
         <div className={`${classes['todo-item']} ${isChecked ? classes['todo-item--checked'] : ''}`}>
             {
                 hide ? <Input text={text}
-                              name='todo-name-editing'
+                              name='todoNameEditing'
                               required={true}
                               inputRef={inputRef}
                     /> :
