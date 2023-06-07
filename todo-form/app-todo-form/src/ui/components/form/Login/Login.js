@@ -6,9 +6,9 @@ import {Field} from "react-final-form";
 
 const Login = (props) => {
     const { handleSubmit, values, pristine, submitting } = props;
-    console.log('handleSubmit', handleSubmit);
-    console.log('Login-props: ', props);
-    console.log('Values: ', values, 'Pristine: ', pristine, 'Submitting :', submitting);
+    // console.log('handleSubmit', handleSubmit);
+    // console.log('Login-props: ', props);
+    // console.log('Values: ', values, 'Pristine: ', pristine, 'Submitting :', submitting);
     const classes = useStyles(props);
     return (
         <form className={classes.form} onSubmit={handleSubmit}>

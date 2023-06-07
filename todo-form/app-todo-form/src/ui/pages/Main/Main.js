@@ -35,7 +35,7 @@ export default function Main(props) {
         <div className={classes.wrapper}>
             <div className={classes.container}>
                 <Header/>
-                <TodoForm/>
+                <TodoForm items={items} setItems={setItems}/>
                 <div>
                     {
                         items.map(item =>

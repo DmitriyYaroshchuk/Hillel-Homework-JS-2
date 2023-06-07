@@ -4,6 +4,7 @@ import Login from "../Login/Login";
 
 
 export default function TodoForm(props) {
+    console.log('TodoFormProps :',props)
     const { items, setItems } = props;
     const handleSubmit = (event) => {
         console.log('event: ', event);
