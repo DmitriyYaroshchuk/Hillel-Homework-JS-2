@@ -4,9 +4,18 @@ import Login from "../Login/Login";
 
 
 export default function TodoForm(props) {
-    const { handleAdd } = props;
-    const handleSubmit = () => {
-        handleAdd()
+    const { items, setItems } = props;
+    const handleSubmit = (event) => {
+        console.log('event: ', event);
+        event.preventDefault();
+        const text = event.target.elements.todoInput.value;
+        console.log('text: ',text)
+        const newItems = [
+            ...items,
+            { id: Math.floor(Math.random() * 100), text }
+        ];
+        setItems(newItems);
+        localStorage.setItem('items', JSON.stringify(newItems));
     }
     return (
         <Form
@@ -14,6 +23,5 @@ export default function TodoForm(props) {
             render={Login}
         />
     )
-
 }
 

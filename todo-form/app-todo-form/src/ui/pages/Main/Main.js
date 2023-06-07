@@ -4,9 +4,10 @@ import TodoItem from "../../components/Item/TodoItem/TodoItem";
 import TodoForm from "../../components/form/TodoForm/TodoForm";
 import '../../../reset.css'
 import useStyles from "./useStyles";
+
 export default function Main(props) {
     const classes = useStyles(props)
-    const [ items, setItems ] = useState([]);
+    const [items, setItems] = useState([]);
     useEffect(
         () => {
             const storedItems = JSON.parse(localStorage.getItem('items')) || [];
@@ -14,19 +15,7 @@ export default function Main(props) {
         },
         []
     )
-    const handleAdd = (event) => {
-        console.log('event: ', event);
-        event.preventDefault();
-        const text = event.target.elements.todoInput.value;
-        console.log('text: ',text)
-        const newItems = [
-            ...items,
-            { id: Math.floor(Math.random() * 100), text }
-        ];
-        setItems(newItems);
-        localStorage.setItem('items', JSON.stringify(newItems));
 
-    }
     const handleRemove = (id) => {
         const newItems = items.filter(item => item.id !== id);
         localStorage.setItem('items', JSON.stringify(newItems));
@@ -35,7 +24,7 @@ export default function Main(props) {
     const handleEditing = (id, newText) => {
         const updatedItems = items.map(item => {
             if (item.id === id) {
-                return { ...item, text: newText }
+                return {...item, text: newText}
             }
             return item
         })
@@ -46,11 +35,16 @@ export default function Main(props) {
         <div className={classes.wrapper}>
             <div className={classes.container}>
                 <Header/>
-                <TodoForm handleAdd={handleAdd}/>
+                <TodoForm/>
                 <div>
                     {
                         items.map(item =>
-                            <TodoItem key={item.id} text={item.text} id={item.id} handleRemove={handleRemove} handleEditing={handleEditing}/>
+                            <TodoItem
+                                key={item.id}
+                                text={item.text}
+                                id={item.id}
+                                handleRemove={handleRemove} handleEditing={handleEditing}
+                            />
                         )
                     }
                 </div>
