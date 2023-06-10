@@ -1,5 +1,10 @@
+//_______Core_______//
 import React from "react";
+
+//_______Images_______//
 import settings from './settings.svg';
+
+//_______Styles_______//
 import useStyles from "./useStyles";
 
 

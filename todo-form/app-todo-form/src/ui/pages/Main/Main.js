@@ -1,8 +1,13 @@
+//_______Core_______//
 import React, {useEffect, useState} from "react";
+
+//_______Components_______//
 import Header from "../../components/Header";
 import TodoItem from "../../components/Item/TodoItem/TodoItem";
 import TodoForm from "../../components/form/TodoForm/TodoForm";
-import '../../../reset.css'
+
+//_______Styles_______//
+import '../../../reset.css';
 import useStyles from "./useStyles";
 
 export default function Main(props) {
@@ -15,7 +20,6 @@ export default function Main(props) {
         },
         []
     )
-
     const handleRemove = (id) => {
         const newItems = items.filter(item => item.id !== id);
         localStorage.setItem('items', JSON.stringify(newItems));
