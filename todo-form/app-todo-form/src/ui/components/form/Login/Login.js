@@ -11,12 +11,11 @@ import useStyles from "../TodoForm/useStyles";
 
 
 const Login = (props) => {
-    const { handleSubmit, errors } = props;
+    const { handleSubmit, errors, pristine } = props;
     console.log('errors: ', errors)
 
     const classes = useStyles(props);
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
-    errors.error = isRequired;
     return (
         <form className={classes.form} onSubmit={handleSubmit}>
             <Field
@@ -25,9 +24,9 @@ const Login = (props) => {
                 type="text"
                 component={Input}
                 placeholder="Введите текст"
-                validate={errors}
+                validate={isRequired}
             />
-            <Button text="Добавить"/>
+            <Button text="Добавить" disabled={pristine}/>
         </form>
     )
 }
