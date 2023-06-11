@@ -19,7 +19,7 @@ const Login = (props) => {
     const minLength = min => value =>
         value.length >= min ? undefined : `Минимальная длина ${min} символов`;
 
-    const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined)
+    const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined);
     return (
         <form className={classes.form} onSubmit={handleSubmit}>
             <Field
