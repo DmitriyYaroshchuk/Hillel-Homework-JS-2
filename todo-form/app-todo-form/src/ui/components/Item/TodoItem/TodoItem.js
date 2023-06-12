@@ -22,10 +22,7 @@ export default function TodoItem(props) {
         setHide(!hide);
     }
     const saveChanges = (event) => {
-        console.log('eventSaveChanges', event)
         const currentText = event.target.previousSibling.value;
-        console.log(event.target)
-        console.log('textSaveChanges: ', currentText);
         handleEditing(id, currentText);
         showContent();
     }
@@ -45,8 +42,11 @@ export default function TodoItem(props) {
             {
                 hide ? <Form
                         onSubmit={showResult}
-                        render={({handleSubmit, pristine}) => (
-                            <form className={`${classes['todo-item__editing']}`} onSubmit={handleSubmit}>
+                        render={({handleSubmit, pristine, errors}) => (
+                            <form
+                                className={`${classes['todo-item__editing']}`}
+                                onSubmit={handleSubmit}
+                            >
                                 <Field
                                     label="todoInputEditing"
                                     name="todoInputEditing"
@@ -60,7 +60,7 @@ export default function TodoItem(props) {
                                 <ButtonSave
                                     saveChanges={saveChanges}
                                     customClass={`${classBtnSave['todo-item__button-save']}`}
-                                    disabled={pristine}
+                                    disabled={pristine || Object.values(errors).length}
                                 />
                             </form>
                         )}

@@ -7,7 +7,7 @@ import useStyles from "./useStyles";
 
 
 export default function Input(props) {
-    const {type, name, customClass, isChecked, changeCheckbox, text, placeholder, input, meta} = props;
+    const {type, name, customClass, text, placeholder, input, meta} = props;
     const classes = useStyles(props);
     const className = cx(`${classes['form__input']}`, {[customClass]: customClass});
     const error = (meta) => meta.error && meta.touched
@@ -17,8 +17,6 @@ export default function Input(props) {
                    type={type}
                    name={name}
                    className={className}
-                // checked={isChecked}
-                // onChange={changeCheckbox}
                    placeholder={placeholder}
                    {...input}
                    onError={error}

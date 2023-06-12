@@ -30,7 +30,7 @@ const Login = (props) => {
                 placeholder="Введите текст"
                 validate={composeValidators(isRequired, minLength(5))}
             />
-            <Button text="Добавить" disabled={pristine}/>
+            <Button text="Добавить" disabled={pristine || Object.values(errors).length}/>
         </form>
     )
 }
