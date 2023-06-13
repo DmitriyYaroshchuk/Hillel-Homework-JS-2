@@ -1,24 +1,20 @@
 import Header from "../components/Header";
 import TodoForm from "./TodoForm";
 import TodoItem from "../components/Item/TodoItem";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import Wrapper from "./Wrapper";
 import Container from "./Container";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {addItem, items} from "../../engine/core/todoSlice";
 
 function TodoContainer() {
-    const [ items, setItems ] = useState([]);
     const inputRef = useRef(null);
     const dispatch = useDispatch();
+    const itemsTodo = useSelector(items);
     const handleAdd = (event) => {
         event.preventDefault();
         const text = inputRef.current.value;
-        dispatch(text);
-        const newItems = [
-            ...items,
-            { id: Math.floor(Math.random() * 100), text }
-        ];
-        setItems(newItems);
+        dispatch(addItem(text));
         inputRef.current.value = '';
     }
     return (
@@ -28,8 +24,8 @@ function TodoContainer() {
                 <TodoForm handleAdd={handleAdd} inputRef={inputRef}/>
                 <div>
                     {
-                        items.map(item =>
-                            <TodoItem text={item.text}/>
+                        itemsTodo.map(item =>
+                            <TodoItem text={item.text} key={item.id}/>
                         )
                     }
                 </div>

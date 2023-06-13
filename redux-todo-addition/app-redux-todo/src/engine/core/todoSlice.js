@@ -7,14 +7,25 @@ const todoSlice = createSlice({
         items: [],
     },
     reducers: {
-        addItem: state => {
+        addItem: (state, action) => {
             const newItem = {
                 id: Math.floor(Math.random() * 100),
-                // text:
+                text: action.payload
             }
-            state.items.push(newItem)
+            state.items.push(newItem);
         }
     }
 });
+console.log('todoSlice: ', todoSlice);
+
+//_____action_____//
 export const { addItem } = todoSlice.actions;
+
+//_____todo_____//
 export default todoSlice.reducer;
+
+//_____items_____//
+export const items = state => {
+    console.log('items-state: ', state)
+    return state.todo.items;
+}
