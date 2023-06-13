@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
-import Button from "../../../../../../../todo-func/app-todo-func/src/ui/components/form/Button";
-import Input from "../../../../../../../todo-func/app-todo-func/src/ui/components/form/Input";
+import Button from "../form/Button";
+import Input from "../form/Input";
 import ButtonSave from "./ButtonSave";
 import ButtonEdit from "./ButtonEdit";
 import CheckBox from "./CheckBox";
