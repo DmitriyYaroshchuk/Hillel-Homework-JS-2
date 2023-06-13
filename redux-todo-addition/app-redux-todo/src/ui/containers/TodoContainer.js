@@ -6,6 +6,7 @@ import Wrapper from "./Wrapper";
 import Container from "./Container";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, items} from "../../engine/core/todoSlice";
+import Footer from "../components/Footer";
 
 function TodoContainer() {
     const inputRef = useRef(null);
@@ -29,6 +30,7 @@ function TodoContainer() {
                         )
                     }
                 </div>
+                <Footer/>
             </Container>
         </Wrapper>
     )
