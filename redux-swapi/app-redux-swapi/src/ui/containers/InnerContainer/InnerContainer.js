@@ -1,5 +1,8 @@
+import useStyles from "./useStyles";
+
 export default function InnerContainer(props) {
+    const classes = useStyles(props);
     return (
-        <div className="swapi">{props.children}</div>
+        <div className={classes.swapi}>{props.children}</div>
     )
 }

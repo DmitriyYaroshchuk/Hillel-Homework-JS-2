@@ -1,5 +1,8 @@
+import useStyles from "./useStyles";
+
 export default function Wrapper(props) {
+    const classes = useStyles(props)
     return (
-        <div className="wrapper">{props.children}</div>
+        <div className={classes.wrapper}>{props.children}</div>
     )
 }
