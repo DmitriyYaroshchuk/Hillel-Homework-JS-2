@@ -29,8 +29,8 @@ export const swapiActions = swapiSlice.actions;
 export const swapiSelectors = {
     data: state => state.swapi.data,
     link: state => state.swapi.link,
-    id: state => state.swapi.link.split('/')[5],
-    content: state => state.swapi.link.split('/')[4],
+    id: state => state.swapi.link ? state.swapi.link.split('/')[5] : undefined,
+    content: state => state.swapi.link ? state.swapi.link.split('/')[4] : undefined,
     loader: state => state.swapi.loader
 }
 console.log(swapiSlice)
