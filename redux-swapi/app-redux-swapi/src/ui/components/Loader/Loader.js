@@ -1,27 +1,35 @@
 import useStyles from "./useStyles";
 import cx from "classnames";
+import {useSelector} from "react-redux";
+import {swapiSelectors} from "../../../engine/core/swapiSlice";
 
 export default function Loader(props) {
-    const {loader} = props;
+    const loader = useSelector(swapiSelectors.loader);
     const classes = useStyles(props);
-    const className = cx(`${classes['bar']}`, {[customClass]: customClass});
+    const customClass = [
+        'bar1',
+        'bar2',
+        'bar3',
+        'bar4',
+        'bar5',
+        'bar6',
+        'bar7',
+        'bar8',
+        'bar9',
+        'bar10',
+        'bar11',
+        'bar12',
+    ];
     return (
         <>
             {
-                loader ? <div className={`${classes.loader} js--loader`}>
-                    <div className={classes.bar1}></div>
-                    <div className={classes.bar2}></div>
-                    <div className={classes.bar3}></div>
-                    <div className={classes.bar4}></div>
-                    <div className={classes.bar5}></div>
-                    <div className={classes.bar6}></div>
-                    <div className={classes.bar7}></div>
-                    <div className={classes.bar8}></div>
-                    <div className={classes.bar9}></div>
-                    <div className={classes.bar10}></div>
-                    <div className={classes.bar11}></div>
-                    <div className={classes.bar12}></div>
-                </div> : undefined
+                loader ? (
+                    <div className={`${classes.loader} js--loader`}>
+                        {customClass.map((className, index) => (
+                            <div key={index} className={cx(classes['bar'], classes[className])}></div>
+                        ))}
+                    </div>
+                ) : undefined
             }
         </>
     )

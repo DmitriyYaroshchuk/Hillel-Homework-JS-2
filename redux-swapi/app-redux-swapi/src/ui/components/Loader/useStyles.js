@@ -2,8 +2,6 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     loader: {
-        // display: 'none',
-        background: 'darkgreen',
         position: 'relative',
         width: '54px',
         height: '54px',
