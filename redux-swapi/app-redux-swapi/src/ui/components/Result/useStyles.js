@@ -58,6 +58,20 @@ const useStyles = createUseStyles({
 
     'swapi-result__code': {
         'text-align': 'left',
+    },
+
+    'swapi-result__button': {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "13px 0",
+        boxSizing: "border-box",
+        backgroundColor: "#282b30",
+        maxWidth: "130px",
+        width: "100%",
+        color: 'whitesmoke',
+        borderRadius: "13px",
+        cursor: "pointer",
     }
 });
 export default useStyles;

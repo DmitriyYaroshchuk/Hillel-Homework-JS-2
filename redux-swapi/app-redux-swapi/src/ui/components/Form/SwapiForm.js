@@ -1,12 +1,35 @@
 import useStyles from "./useStyles";
 import {Field, Form} from "react-final-form";
-
-
-
+import {swapiActions} from "../../../engine/core/swapiSlice";
+import {useDispatch} from "react-redux";
+import {useRef} from "react";
 
 export default function SwapiForm(props) {
-    const {formRef, onSubmit} = props;
     const classes = useStyles(props);
+    const dispatch = useDispatch();
+    const formRef = useRef(null);
+    const onSubmit = (value) => {
+        const link = `${formRef.current.action}${value.urlInput}`;
+        dispatch(swapiActions.setLink(link));
+        dispatch(swapiActions.setLoader(true))
+        fetch(link)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                dispatch(swapiActions.setData(data));
+                dispatch(swapiActions.setLoader(false))
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+                dispatch(swapiActions.setLink(undefined));
+                dispatch(swapiActions.setData(undefined));
+                dispatch(swapiActions.setLoader(false))
+            })
+    }
     const required = value => value ? undefined : 'Required field';
     const checkURL = value => (/^\/([a-z]*\/\d+\/)?$/.test(value) ? undefined : 'Invalid URL');
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => {

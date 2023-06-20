@@ -9,15 +9,15 @@ const swapiSlice = createSlice({
 
     },
     reducers: {
-        getData: (state, action) => {
+        setData: (state, action) => {
             state.data = action.payload;
             console.log('data :', state.data)
         },
-        getLink: (state, action) => {
+        setLink: (state, action) => {
             state.link = action.payload;
             console.log('link :', state.link, typeof state.link)
         },
-        getLoader: (state, action) => {
+        setLoader: (state, action) => {
             state.loader = action.payload;
         }
 

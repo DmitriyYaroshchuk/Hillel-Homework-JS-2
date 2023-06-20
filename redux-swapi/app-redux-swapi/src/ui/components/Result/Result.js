@@ -1,15 +1,19 @@
 import Loader from "../Loader/Loader";
 import useStyles from "./useStyles";
-import {useSelector} from "react-redux";
-import {swapiSelectors} from "../../../engine/core/swapiSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {swapiActions, swapiSelectors} from "../../../engine/core/swapiSlice";
 
 
 export default function Result (props) {
-    // const { id, content } = props;
     const classes = useStyles(props);
     const response = useSelector(swapiSelectors.data);
     const id = useSelector(swapiSelectors.id);
     const content = useSelector(swapiSelectors.content);
+    const dispatch = useDispatch();
+    const clearInfo = () => {
+        dispatch(swapiActions.setLink(undefined))
+        dispatch(swapiActions.setData(undefined))
+    }
 
     return (
         <div className={`${classes["swapi-result"]}`}>
@@ -22,6 +26,9 @@ export default function Result (props) {
                     }
                 </div>
                 <pre className={`${classes["swapi-result__code"]}`}>{JSON.stringify(response, null, 2)}</pre>
+                {
+                    response ? <button className={`${classes["swapi-result__button"]}`} onClick={clearInfo}>Clear</button> : undefined
+                }
             </div>
         </div>
     )
