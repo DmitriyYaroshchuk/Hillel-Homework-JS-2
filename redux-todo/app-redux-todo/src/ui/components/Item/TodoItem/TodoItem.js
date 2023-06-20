@@ -1,55 +1,69 @@
-//_______Core_______//
-import React, {useState} from "react";
-import {Field, Form} from "react-final-form";
-
-//_______Components_______//
 import Button from "../../form/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {editItem, hideItem, removeItem, todoSelectors} from "../../../../engine/core/todoSlice";
+import {Field, Form} from "react-final-form";
+import useStyles from "./useStyles";
+import Input from "../../form/Input/Input";
+import useStylesBtnSave from "../ButtonSave/useStyles";
 import ButtonSave from "../ButtonSave/ButtonSave";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
-import Input from "../../form/Input/Input";
 
-//_______Styles_______//
-import useStyles from "./useStyles";
-import useStylesBtnSave from "../ButtonSave/useStyles";
 
 
 export default function TodoItem(props) {
+    const { text, id } = props;
+    const dispatch = useDispatch();
+    const items = useSelector(todoSelectors.items);
+    const hide = useSelector(todoSelectors.hide);
     const classes = useStyles(props);
-
-    const {text, id, handleRemove, handleEditing} = props;
-    const [hide, setHide] = useState(false);
+    const classBtnSave = useStylesBtnSave(props);
+    const handleEdit = (id, newText) => {
+        const updatedItems = items.map(item => {
+            if (item.id === id) {
+                return {...item, text: newText}
+            }
+            return item
+        })
+        console.log('handleEdit:', handleEdit);
+        dispatch(editItem(updatedItems));
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+    }
     const showContent = () => {
-        setHide(!hide);
+        dispatch(hideItem(!hide))
     }
     const saveChanges = (event) => {
         const currentText = event.target.previousSibling.value;
-        handleEditing(id, currentText);
+        console.log('currentText', currentText)
+        handleEdit(id, currentText);
         showContent();
     }
-    const showResult = (event) => {
-        console.log('showResult: ', event)
-    }
 
-    const callHandleRemove = () => handleRemove(id);
+    const handleRemove = () => {
+       dispatch(removeItem(id));
+       const newItems = items.filter(item => item.id !== id);
+        // dispatch(removeItem(newItems));
+       localStorage.setItem('items', JSON.stringify(newItems));
+    }
+    const onSubmit = event => {
+        console.log(event)
+    }
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
     const minLength = min => value =>
         value.length >= min ? undefined : `Минимальная длина ${min} символов`;
-
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined);
-
     return (
         <div className={`${classes['todo-item']}`}>
             {
                 hide ? <Form
-                        onSubmit={showResult}
+                        onSubmit={onSubmit}
                         render={({handleSubmit, pristine, errors}) => (
                             <form
                                 className={`${classes['todo-item__editing']}`}
                                 onSubmit={handleSubmit}
                             >
                                 <Field
-                                    label="todoInputEditing"
-                                    name="todoInputEditing"
+                                    label="todoInputEdit"
+                                    name="todoInputEdit"
                                     text={text}
                                     type="text"
                                     placeholder="Введите отредактированный текст"
@@ -71,12 +85,12 @@ export default function TodoItem(props) {
                 hide ? undefined :
                     <>
                         <ButtonEdit showContent={showContent}/>
-                        <Button callHandleRemove={callHandleRemove}
+                        <Button onClick={handleRemove}
                                 text="Удалить"
                                 customClass={`${classes['todo-item__delete']}`}
                         />
                         <Form
-                            onSubmit={showResult}
+                            onSubmit={onSubmit}
                             render={({handleSubmit}) => (
                                 <form className={`${classes['todo-item__checkbox']}`} onSubmit={handleSubmit}>
                                     <Field
@@ -95,4 +109,3 @@ export default function TodoItem(props) {
         </div>
     )
 }
-
