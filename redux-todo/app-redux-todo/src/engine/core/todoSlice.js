@@ -4,7 +4,6 @@ const todoSlice = createSlice({
     name: 'todo',
     initialState: {
         items: [],
-        updateItem: [],
         hide: false,
     },
     reducers: {
@@ -18,12 +17,12 @@ const todoSlice = createSlice({
             // state.items = action.payload;
         },
         hideItem: (state, action) => {
-            state.hide = action.payload;
+            const {id, hide} = action.payload;
+            const item = state.items.find(item => item.id === id);
+            if (item) {
+                state.hide = hide;
+            }
         },
-        editItem: (state, action) => {
-            state.updateItem = action.payload;
-        }
-
     }
 });
 export const todoReducer = todoSlice.reducer;
@@ -31,11 +30,9 @@ export const {
     addItem,
     removeItem,
     hideItem,
-    editItem,
 } = todoSlice.actions;
 export const todoSelectors = {
     items: state => state.todo.items,
     length: state => state.todo.items.length,
     hide: state => state.todo.hide,
-    updateItem: state => state.todo.updateItem,
 }

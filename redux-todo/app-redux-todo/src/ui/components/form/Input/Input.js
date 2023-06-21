@@ -9,7 +9,7 @@ export default function Input(props) {
     const error = (meta) => meta.error && meta.touched
     return (
         <>
-            <input defaultValue={text}
+            <input value={text}
                    type={type}
                    name={name}
                    className={className}

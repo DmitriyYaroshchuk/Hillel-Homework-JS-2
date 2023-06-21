@@ -1,12 +1,13 @@
 import Button from "../../form/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {editItem, hideItem, removeItem, todoSelectors} from "../../../../engine/core/todoSlice";
+import {addItem, hideItem, removeItem, todoSelectors} from "../../../../engine/core/todoSlice";
 import {Field, Form} from "react-final-form";
 import useStyles from "./useStyles";
 import Input from "../../form/Input/Input";
 import useStylesBtnSave from "../ButtonSave/useStyles";
 import ButtonSave from "../ButtonSave/ButtonSave";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
+
 
 
 
@@ -25,11 +26,11 @@ export default function TodoItem(props) {
             return item
         })
         console.log('handleEdit:', handleEdit);
-        dispatch(editItem(updatedItems));
+        dispatch(addItem(updatedItems));
         localStorage.setItem('items', JSON.stringify(updatedItems));
     }
     const showContent = () => {
-        dispatch(hideItem(!hide))
+        dispatch(hideItem({ id, hide: !hide } ))
     }
     const saveChanges = (event) => {
         const currentText = event.target.previousSibling.value;
