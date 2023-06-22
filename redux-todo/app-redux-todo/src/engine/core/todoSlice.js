@@ -4,11 +4,14 @@ const todoSlice = createSlice({
     name: 'todo',
     initialState: {
         items: [],
-        hide: false,
     },
     reducers: {
         addItem: (state, action) => {
-            state.items = action.payload
+            state.items = action.payload.map(item => ({
+                ...item,
+                id: Math.floor(Math.random() * 100),
+                hide: !state.hide
+            }))
         },
         removeItem: (state, action) => {
             const id = action.payload;
@@ -34,5 +37,5 @@ export const {
 export const todoSelectors = {
     items: state => state.todo.items,
     length: state => state.todo.items.length,
-    hide: state => state.todo.hide,
+    hide: state => state.todo.hide
 }
