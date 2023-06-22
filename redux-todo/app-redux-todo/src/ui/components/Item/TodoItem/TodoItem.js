@@ -29,7 +29,7 @@ export default function TodoItem(props) {
         localStorage.setItem('items', JSON.stringify(updatedItems));
     }
     const showContent = () => {
-        dispatch(hideItem(items))
+        dispatch(hideItem({ id, hide: !hide }))
     }
     const saveChanges = (event) => {
         const currentText = event.target.previousSibling.value;

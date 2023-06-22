@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import TodoForm from "./TodoForm/TodoForm";
 import TodoItem from "../components/Item/TodoItem/TodoItem";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, todoSelectors} from "../../engine/core/todoSlice";
 import Footer from "../components/Footer";

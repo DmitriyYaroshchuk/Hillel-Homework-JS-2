@@ -19,10 +19,10 @@ const todoSlice = createSlice({
             state.items.splice(itemIndex, 1);
         },
         hideItem: (state, action) => {
-            const {id, hide} = action.payload;
+            const { id, hide } = action.payload;
             const item = state.items.find(item => item.id === id);
             if (item) {
-                state.hide = hide;
+                item.hide = hide;
             }
         },
     }
