@@ -10,8 +10,7 @@ export default function SwapiForm(props) {
     const formRef = useRef(null);
     const onSubmit = (value) => {
         const link = `${formRef.current.action}${value.urlInput}`;
-        dispatch(swapiActions.setLink(link));
-        dispatch(swapiActions.setLoader(true))
+        dispatch(swapiActions.setLoader(true));
         fetch(link)
             .then(response => {
                 if (!response.ok) {
@@ -20,14 +19,15 @@ export default function SwapiForm(props) {
                 return response.json();
             })
             .then(data => {
+                dispatch(swapiActions.setLink(link));
                 dispatch(swapiActions.setData(data));
-                dispatch(swapiActions.setLoader(false))
+                dispatch(swapiActions.setLoader(false));
             })
             .catch(error => {
                 console.error('Error: ', error);
                 dispatch(swapiActions.setLink(undefined));
                 dispatch(swapiActions.setData(undefined));
-                dispatch(swapiActions.setLoader(false))
+                dispatch(swapiActions.setLoader(false));
             })
     }
     const required = value => value ? undefined : 'Required field';
@@ -65,7 +65,6 @@ export default function SwapiForm(props) {
                                     }
                                 </>
                             )}
-
                         </Field>
                     <button
                         className={`${classes["swapi__button"]}`}
@@ -77,6 +76,5 @@ export default function SwapiForm(props) {
                 </form>
             )}
         />
-
     )
 }
