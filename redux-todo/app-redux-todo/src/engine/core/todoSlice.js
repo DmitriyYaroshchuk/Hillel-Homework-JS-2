@@ -10,14 +10,13 @@ const todoSlice = createSlice({
             state.items = action.payload.map(item => ({
                 ...item,
                 id: Math.floor(Math.random() * 100),
-                hide: !state.hide
+                hide: false,
             }))
         },
         removeItem: (state, action) => {
             const id = action.payload;
             const itemIndex = state.items.findIndex(item => item.id === id);
             state.items.splice(itemIndex, 1);
-            // state.items = action.payload;
         },
         hideItem: (state, action) => {
             const {id, hide} = action.payload;

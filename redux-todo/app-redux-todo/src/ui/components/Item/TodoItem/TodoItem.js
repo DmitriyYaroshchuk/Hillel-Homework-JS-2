@@ -12,10 +12,9 @@ import ButtonEdit from "../ButtonEdit/ButtonEdit";
 
 
 export default function TodoItem(props) {
-    const { text, id } = props;
+    const { text, id, hide } = props;
     const dispatch = useDispatch();
     const items = useSelector(todoSelectors.items);
-    const hide = useSelector(todoSelectors.hide);
     const classes = useStyles(props);
     const classBtnSave = useStylesBtnSave(props);
     const handleEdit = (id, newText) => {
@@ -30,7 +29,7 @@ export default function TodoItem(props) {
         localStorage.setItem('items', JSON.stringify(updatedItems));
     }
     const showContent = () => {
-        dispatch(hideItem({ id, hide: !hide } ))
+        dispatch(hideItem(items))
     }
     const saveChanges = (event) => {
         const currentText = event.target.previousSibling.value;

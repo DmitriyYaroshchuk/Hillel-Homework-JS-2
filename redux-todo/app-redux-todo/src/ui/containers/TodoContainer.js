@@ -28,6 +28,7 @@ export default function TodoContainer () {
                                 key={item.id}
                                 text={item.text}
                                 id={item.id}
+                                hide={item.hide}
                             />
                         )
                     }
