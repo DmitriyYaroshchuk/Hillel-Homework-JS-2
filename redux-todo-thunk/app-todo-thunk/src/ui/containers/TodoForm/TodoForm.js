@@ -1,7 +1,7 @@
 import {useDispatch} from "react-redux";
 import {Form} from "react-final-form";
 import LoginForm from "./LoginForm";
-import {handleAddThunk} from "../../../engine/core/todo/thunk";
+import {handleAddThunk} from "../../../engine/core/todo/thunkAdd";
 
 export default function TodoForm() {
     const dispatch = useDispatch();

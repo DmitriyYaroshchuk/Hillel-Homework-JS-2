@@ -5,8 +5,9 @@ import {Form} from "react-final-form";
 import useStyles from "./useStyles";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
 import LoginItem from "./LoginItem";
-import LoginCheckbox from "../../../containers/TodoForm/LoginCheckbox";
-import {handleEditThunk, handleRemoveThunk} from "../../../../engine/core/todo/thunk";
+import LoginCheckbox from "./LoginCheckbox";
+import {handleRemoveThunk} from "../../../../engine/core/todo/thunkRemove";
+import {handleEditThunk, saveChangesThunk} from "../../../../engine/core/todo/thunkEdit";
 
 
 export default function TodoItem(props) {
@@ -14,26 +15,11 @@ export default function TodoItem(props) {
     const dispatch = useDispatch();
     const classes = useStyles(props);
 
-    const handleEdit = () => dispatch(handleEditThunk(id));
-    // const handleEdit = (id, newText) => {
-    //     const updatedItems = items.map(item => {
-    //         if (item.id === id) {
-    //             return {...item, text: newText}
-    //         }
-    //         return item
-    //     })
-    //     console.log('handleEdit:', handleEdit);
-    //     dispatch(addItem(updatedItems));
-    //     localStorage.setItem('items', JSON.stringify(updatedItems));
-    // }
+    const handleEdit = (newText) => dispatch(handleEditThunk({ id, newText }));
     const showContent = () => {
-        dispatch(hideItem({id, hide: !hide}));
-    }
-    const saveChanges = (event) => {
-        const currentText = event.target.previousSibling.value;
-        handleEdit(currentText);
-        showContent();
-    }
+        dispatch(hideItem({id, hide: !hide}))
+    };
+    const saveChanges = (event) => dispatch(saveChangesThunk(event, handleEdit, showContent));
     const handleRemove = () => dispatch(handleRemoveThunk(id));
     const handleSubmit = event => {
         console.log(event);

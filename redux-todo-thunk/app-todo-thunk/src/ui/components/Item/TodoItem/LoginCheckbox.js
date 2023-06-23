@@ -1,6 +1,6 @@
 import {Field} from "react-final-form";
-import Input from "../../components/form/Input/Input";
-import useStyles from "../../components/Item/TodoItem/useStyles";
+import Input from "../../form/Input/Input";
+import useStyles from "./useStyles";
 
 const LoginCheckbox = props => {
     const { handleSubmit } = props;
