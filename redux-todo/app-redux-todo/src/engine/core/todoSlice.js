@@ -11,6 +11,7 @@ const todoSlice = createSlice({
                 ...item,
                 id: Math.floor(Math.random() * 100),
                 hide: false,
+                check: false,
             }))
         },
         removeItem: (state, action) => {
@@ -25,6 +26,13 @@ const todoSlice = createSlice({
                 item.hide = hide;
             }
         },
+        toggleCheckBox: (state, action) => {
+            const { id, checked } = action.payload;
+            const item = state.items.find(item => item.id === id);
+            if (item) {
+                item.check = checked;
+            }
+        }
     }
 });
 export const todoReducer = todoSlice.reducer;
@@ -32,9 +40,11 @@ export const {
     addItem,
     removeItem,
     hideItem,
+    toggleCheckBox,
 } = todoSlice.actions;
 export const todoSelectors = {
     items: state => state.todo.items,
     length: state => state.todo.items.length,
-    hide: state => state.todo.hide
+    hide: state => state.todo.hide,
+    check: state => state.todo.check,
 }

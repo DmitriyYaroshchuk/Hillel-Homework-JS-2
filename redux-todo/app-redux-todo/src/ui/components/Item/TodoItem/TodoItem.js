@@ -1,6 +1,6 @@
 import Button from "../../form/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, hideItem, removeItem, todoSelectors} from "../../../../engine/core/todoSlice";
+import {addItem, hideItem, removeItem, todoSelectors, toggleCheckBox} from "../../../../engine/core/todoSlice";
 import {Field, Form} from "react-final-form";
 import useStyles from "./useStyles";
 import Input from "../../form/Input/Input";
@@ -8,7 +8,7 @@ import useStylesBtnSave from "../ButtonSave/useStyles";
 import ButtonSave from "../ButtonSave/ButtonSave";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
 export default function TodoItem(props) {
-    const { text, id, hide } = props;
+    const { text, id, hide, check } = props;
     const dispatch = useDispatch();
     const items = useSelector(todoSelectors.items);
     const classes = useStyles(props);
@@ -36,15 +36,15 @@ export default function TodoItem(props) {
        const newItems = items.filter(item => item.id !== id);
        localStorage.setItem('items', JSON.stringify(newItems));
     }
-    const onSubmit = value => {
-        console.log(value);
+    const onChangeCheckbox = () => {
+       dispatch(toggleCheckBox({ id, checked: !check }))
     }
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
     const minLength = min => value =>
         value.length >= min ? undefined : `Минимальная длина ${min} символов`;
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined);
     return (
-        <div className={`${classes['todo-item']}`}>
+        <div className={`${classes['todo-item']} ${check ? classes['todo-item--checked'] : ''}`}>
             {
                 hide ? <Form
                         onSubmit={saveChanges}
@@ -70,7 +70,7 @@ export default function TodoItem(props) {
                             </form>
                         )}
                     /> :
-                    <div className={`${classes['todo-item__description']}`}>{text}</div>
+                    <div className={`${classes['todo-item__description']} ${check ? classes['todo-item__description--checked'] : ''}`}>{text}</div>
             }
             {
                 hide ? undefined :
@@ -83,7 +83,7 @@ export default function TodoItem(props) {
 
                         <label className={`${classes['todo-item__checkbox']}`}>
                             <input
-                                onChange={onSubmit}
+                                onChange={onChangeCheckbox}
                                 type="checkbox"
                                 className={`${classes['todo-item__input-checkbox']}`}
                                 name="todoCheckBox"
