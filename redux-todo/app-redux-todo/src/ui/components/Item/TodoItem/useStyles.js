@@ -36,6 +36,7 @@ const useStyles = createUseStyles({
         'align-items': 'center',
     },
     'todo-item__input-checkbox': {
+        'height': '25px',
         'width': '25px'
     }
 });

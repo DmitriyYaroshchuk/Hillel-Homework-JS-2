@@ -7,10 +7,6 @@ import Input from "../../form/Input/Input";
 import useStylesBtnSave from "../ButtonSave/useStyles";
 import ButtonSave from "../ButtonSave/ButtonSave";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
-
-
-
-
 export default function TodoItem(props) {
     const { text, id, hide } = props;
     const dispatch = useDispatch();
@@ -31,9 +27,8 @@ export default function TodoItem(props) {
         dispatch(hideItem({ id, hide: !hide }))
     }
     const saveChanges = (values) => {
-        console.log(values)
-        console.log(values.todoInputEdit);
-        handleEdit(id, values.todoInputEdit);
+        const { todoInputEdit } = values;
+        handleEdit(id, todoInputEdit);
         showContent();
     }
     const handleRemove = () => {
@@ -41,8 +36,8 @@ export default function TodoItem(props) {
        const newItems = items.filter(item => item.id !== id);
        localStorage.setItem('items', JSON.stringify(newItems));
     }
-    const onSubmit = event => {
-        console.log(event)
+    const onSubmit = value => {
+        console.log(value);
     }
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
     const minLength = min => value =>
@@ -69,7 +64,6 @@ export default function TodoItem(props) {
                                     initialValue={text}
                                 />
                                 <ButtonSave
-                                    saveChanges={saveChanges}
                                     customClass={`${classBtnSave['todo-item__button-save']}`}
                                     disabled={pristine || Object.values(errors).length}
                                 />
@@ -86,21 +80,15 @@ export default function TodoItem(props) {
                                 text="Удалить"
                                 customClass={`${classes['todo-item__delete']}`}
                         />
-                        <Form
-                            onSubmit={onSubmit}
-                            render={({handleSubmit}) => (
-                                <form className={`${classes['todo-item__checkbox']}`} onSubmit={handleSubmit}>
-                                    <Field
-                                        customClass={`${classes['todo-item__input-checkbox']}`}
-                                        label="todoCheckBox"
-                                        name="todoCheckBox"
-                                        type="checkbox"
-                                        component={Input}
-                                    />
-                                </form>
-                            )}
-                        >
-                        </Form>
+
+                        <label className={`${classes['todo-item__checkbox']}`}>
+                            <input
+                                onChange={onSubmit}
+                                type="checkbox"
+                                className={`${classes['todo-item__input-checkbox']}`}
+                                name="todoCheckBox"
+                            />
+                        </label>
                     </>
             }
         </div>
