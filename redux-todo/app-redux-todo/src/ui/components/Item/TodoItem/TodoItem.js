@@ -30,11 +30,10 @@ export default function TodoItem(props) {
     const showContent = () => {
         dispatch(hideItem({ id, hide: !hide }))
     }
-    const saveChanges = (event) => {
-        const currentText = event.target.previousSibling.value;
-        console.log(event.target);
-        console.log(currentText);
-        handleEdit(id, currentText);
+    const saveChanges = (values) => {
+        console.log(values)
+        console.log(values.todoInputEdit);
+        handleEdit(id, values.todoInputEdit);
         showContent();
     }
     const handleRemove = () => {
