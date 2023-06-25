@@ -24,7 +24,6 @@ export default function TodoItem(props) {
             }
             return item
         })
-        console.log('handleEdit:', handleEdit);
         dispatch(addItem(updatedItems));
         localStorage.setItem('items', JSON.stringify(updatedItems));
     }
@@ -33,15 +32,14 @@ export default function TodoItem(props) {
     }
     const saveChanges = (event) => {
         const currentText = event.target.previousSibling.value;
-        console.log('currentText', currentText)
+        console.log(event.target);
+        console.log(currentText);
         handleEdit(id, currentText);
         showContent();
     }
-
     const handleRemove = () => {
        dispatch(removeItem(id));
        const newItems = items.filter(item => item.id !== id);
-        // dispatch(removeItem(newItems));
        localStorage.setItem('items', JSON.stringify(newItems));
     }
     const onSubmit = event => {
@@ -55,7 +53,7 @@ export default function TodoItem(props) {
         <div className={`${classes['todo-item']}`}>
             {
                 hide ? <Form
-                        onSubmit={onSubmit}
+                        onSubmit={saveChanges}
                         render={({handleSubmit, pristine, errors}) => (
                             <form
                                 className={`${classes['todo-item__editing']}`}
