@@ -31,7 +31,7 @@ export default function SwapiForm(props) {
             })
     }
     const required = value => value ? undefined : 'Required field';
-    const checkURL = value => (/^\/([a-z]*\/\d+\/)?$/.test(value) ? undefined : 'Invalid URL');
+    const checkURL = value => (/^\/[a-z]+\/\d*\/?$/.test(value) ? undefined : 'Invalid URL');
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => {
         return error || validator(value)
     },undefined)

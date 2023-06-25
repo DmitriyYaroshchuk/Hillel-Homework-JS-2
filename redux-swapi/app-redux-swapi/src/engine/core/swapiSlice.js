@@ -11,11 +11,9 @@ const swapiSlice = createSlice({
     reducers: {
         setData: (state, action) => {
             state.data = action.payload;
-            console.log('data :', state.data)
         },
         setLink: (state, action) => {
             state.link = action.payload;
-            console.log('link :', state.link, typeof state.link)
         },
         setLoader: (state, action) => {
             state.loader = action.payload;
@@ -33,6 +31,3 @@ export const swapiSelectors = {
     content: state => state.swapi.link ? state.swapi.link.split('/')[4] : undefined,
     loader: state => state.swapi.loader
 }
-console.log(swapiSlice)
-console.log('swapiActions: ', swapiActions)
-console.log('swapiSelectors: ',swapiSelectors)
