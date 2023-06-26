@@ -15,7 +15,7 @@ import useStylesBtnSave from "../ButtonSave/useStyles";
 
 export default function TodoItem(props) {
     const classes = useStyles(props);
-
+    const classBtnSave = useStylesBtnSave(props);
     const {text, id, handleRemove, handleEditing} = props;
     const [hide, setHide] = useState(false);
     const showContent = () => {
