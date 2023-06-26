@@ -15,7 +15,7 @@ export default function TodoForm() {
         ];
         dispatch(addItem(newItems));
         localStorage.setItem('items', JSON.stringify(newItems));
-        event.todoInput = '';
+        // event.todoInput = '';
     }
     return (
         <Form

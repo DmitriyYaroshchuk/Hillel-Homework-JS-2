@@ -4,7 +4,7 @@ import Input from "../../components/form/Input/Input";
 import Button from "../../components/form/Button/Button";
 
 const Login = (props) => {
-    const { handleSubmit, errors, pristine } = props;
+    const { handleSubmit, errors, pristine, reset } = props;
 
     const classes = useStyles(props);
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
@@ -13,7 +13,14 @@ const Login = (props) => {
 
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined);
     return (
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form
+            className={classes.form}
+            onSubmit={event => {
+                handleSubmit(event).then(() => {
+                    reset();
+                })
+            }}
+        >
             <Field
                 label="todoInput"
                 name="todoInput"
