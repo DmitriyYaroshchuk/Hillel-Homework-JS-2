@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
         'border': '2px solid transparent',
     },
     'todo-item__description': {
-        'font-weight': 700,
+        'font-weight': 500,
         'font-size': '20px',
         'line-height': '110%',
         'flex-grow': '1',
