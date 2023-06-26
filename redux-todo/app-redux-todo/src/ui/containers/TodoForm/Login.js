@@ -4,7 +4,7 @@ import Input from "../../components/form/Input/Input";
 import Button from "../../components/form/Button/Button";
 
 const Login = (props) => {
-    const {handleSubmit, errors, pristine, reset, form} = props;
+    const {handleSubmit, errors, pristine, form} = props;
 
     const classes = useStyles(props);
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
