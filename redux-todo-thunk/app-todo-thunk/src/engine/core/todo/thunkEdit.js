@@ -14,10 +14,13 @@ export const handleEditThunk = (props) => {
         localStorage.setItem('items', JSON.stringify(updatedItems));
     };
 };
-export const saveChangesThunk = (event, handleEdit, showContent) => {
+export const saveChangesThunk = (props) => {
+    const {todoInputEdit, handleEdit, showContent} = props;
+    console.log('todoInputEditThunk :', todoInputEdit);
+    console.log(handleEdit());
+    console.log(showContent);
     return () => {
-        const currentText = event.target.previousSibling.value;
-        handleEdit(currentText);
+        handleEdit(todoInputEdit);
         showContent();
     }
 }

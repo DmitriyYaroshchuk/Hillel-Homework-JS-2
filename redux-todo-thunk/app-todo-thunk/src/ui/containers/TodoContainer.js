@@ -29,6 +29,7 @@ export default function TodoContainer () {
                                 text={item.text}
                                 id={item.id}
                                 hide={item.hide}
+                                check={item.check}
                             />
                         )
                     }

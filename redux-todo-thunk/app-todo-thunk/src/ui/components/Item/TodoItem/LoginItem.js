@@ -5,7 +5,7 @@ import useStylesBtnSave from "../ButtonSave/useStyles";
 import useStyles from "./useStyles";
 
 const LoginItem = props => {
-    const { handleSubmit, saveChanges, text, pristine, errors } = props;
+    const { handleSubmit, text, pristine, errors } = props;
     const classes = useStyles(props);
     const classBtnSave = useStylesBtnSave(props);
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
@@ -29,7 +29,6 @@ const LoginItem = props => {
                 initialValue={text}
             />
             <ButtonSave
-                saveChanges={saveChanges}
                 customClass={`${classBtnSave['todo-item__button-save']}`}
                 disabled={pristine || Object.values(errors).length}
             />
