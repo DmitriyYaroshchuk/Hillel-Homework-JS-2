@@ -33,7 +33,7 @@ export default function TodoItem(props) {
         const { todoInputEdit } = values;
         console.log('todoInputEdit :', todoInputEdit);
         console.log(handleEdit);
-        dispatch(saveChangesThunk(todoInputEdit, handleEdit, showContent))
+        dispatch(saveChangesThunk({todoInputEdit, handleEdit, showContent}))
     };
     const handleRemove = () => dispatch(handleRemoveThunk(id));
 
