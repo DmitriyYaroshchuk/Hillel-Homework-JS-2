@@ -1,4 +1,4 @@
-import {addItem} from "./todoSlice";
+import {addItem} from "../slice";
 
 export const handleEditThunk = (props) => {
     const { id, newText } = props;
@@ -14,11 +14,7 @@ export const handleEditThunk = (props) => {
         localStorage.setItem('items', JSON.stringify(updatedItems));
     };
 };
-export const saveChangesThunk = (props) => {
-    const {todoInputEdit, handleEdit, showContent} = props;
-    console.log('todoInputEditThunk :', todoInputEdit);
-    console.log(handleEdit());
-    console.log(showContent);
+export const saveChangesThunk = (todoInputEdit, handleEdit, showContent) => {
     return () => {
         handleEdit(todoInputEdit);
         showContent();

@@ -3,7 +3,7 @@ import TodoForm from "./TodoForm/TodoForm";
 import TodoItem from "../components/Item/TodoItem/TodoItem";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, todoSelectors} from "../../engine/core/todo/todoSlice";
+import {addItem, todoSelectors} from "../../engine/core/todo/slice";
 import Footer from "../components/Footer/Footer";
 import Container from "./Container/Container";
 import Wrapper from "./Wrapper/Wrapper";

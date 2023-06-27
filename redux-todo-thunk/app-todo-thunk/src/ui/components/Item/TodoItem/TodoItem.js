@@ -1,12 +1,12 @@
 import Button from "../../form/Button/Button";
 import {useDispatch} from "react-redux";
-import {hideItem, toggleCheckBox} from "../../../../engine/core/todo/todoSlice";
+import {hideItem, toggleCheckBox} from "../../../../engine/core/todo/slice";
 import {Form} from "react-final-form";
 import useStyles from "./useStyles";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
 import LoginItem from "./LoginItem";
-import {handleRemoveThunk} from "../../../../engine/core/todo/thunkRemove";
-import {handleEditThunk, saveChangesThunk} from "../../../../engine/core/todo/thunkEdit";
+import {handleRemoveThunk} from "../../../../engine/core/todo/thunks/thunkRemove";
+import {handleEditThunk, saveChangesThunk} from "../../../../engine/core/todo/thunks/thunkEdit";
 
 
 export default function TodoItem(props) {
@@ -17,25 +17,19 @@ export default function TodoItem(props) {
     const handleEdit = (newText) => {
         dispatch(handleEditThunk({ id, newText }))
     }
-
     const showContent = () => {
         dispatch(hideItem({id, hide: !hide}));
+    };
+    const saveChanges = (values) => {
+        const { todoInputEdit } = values;
+        dispatch(saveChangesThunk(todoInputEdit, handleEdit, showContent))
+    };
+    const handleRemove = () => {
+        dispatch(handleRemoveThunk(id));
     };
     const onChangeCheckbox = () => {
         dispatch(toggleCheckBox({ id, checked: !check }))
     }
-    // const saveChanges = (values) => {
-    //     const { todoInputEdit } = values;
-    //     handleEdit(id, todoInputEdit);
-    //     showContent();
-    // }
-    const saveChanges = (values) => {
-        const { todoInputEdit } = values;
-        console.log('todoInputEdit :', todoInputEdit);
-        console.log(handleEdit);
-        dispatch(saveChangesThunk({todoInputEdit, handleEdit, showContent}))
-    };
-    const handleRemove = () => dispatch(handleRemoveThunk(id));
 
     return (
         <div className={`${classes['todo-item']} ${check ? classes['todo-item--checked'] : ''}`}>

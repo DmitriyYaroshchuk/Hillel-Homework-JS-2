@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, todoSelectors} from "../../../engine/core/todo/todoSlice";
+import {addItem, todoSelectors} from "../../../engine/core/todo/slice";
 import Button from "../form/Button/Button";
 import useStyles from "./useStyles";
 

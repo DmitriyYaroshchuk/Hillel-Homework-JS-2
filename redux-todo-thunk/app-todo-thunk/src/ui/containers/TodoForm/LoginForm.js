@@ -4,7 +4,7 @@ import Input from "../../components/form/Input/Input";
 import Button from "../../components/form/Button/Button";
 
 const LoginForm = (props) => {
-    const { handleSubmit, errors, pristine } = props;
+    const { handleSubmit, errors, pristine, form } = props;
 
     const classes = useStyles(props);
     const isRequired = value => value ? undefined : 'ОБЯЗАТЕЛЬНОЕ ПОЛЕ';
@@ -13,7 +13,13 @@ const LoginForm = (props) => {
 
     const composeValidators = (...validators) => value => validators.reduce((error, validator) => error || validator(value), undefined);
     return (
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form
+            className={classes.form}
+            onSubmit={event => {
+                handleSubmit(event);
+                form.reset();
+            }}
+        >
             <Field
                 label="todoInput"
                 name="todoInput"
@@ -22,7 +28,10 @@ const LoginForm = (props) => {
                 placeholder="Введите текст"
                 validate={composeValidators(isRequired, minLength(5))}
             />
-            <Button text="Добавить" disabled={pristine || Object.values(errors).length}/>
+            <Button
+                text="Добавить"
+                disabled={pristine || Object.values(errors).length}
+            />
         </form>
 
     )

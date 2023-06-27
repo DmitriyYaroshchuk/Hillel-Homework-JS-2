@@ -1,4 +1,4 @@
-import {addItem} from "./todoSlice";
+import {addItem} from "../slice";
 
 export const handleAddThunk = (value) => {
     return (dispatch, getState) => {

@@ -1,4 +1,4 @@
-import {removeItem} from "./todoSlice";
+import {removeItem} from "../slice";
 
 export const handleRemoveThunk = (id) => {
     return (dispatch, getState) => {
